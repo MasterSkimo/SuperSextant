@@ -41,3 +41,7 @@ void HorlogeBros::run() {
 int HorlogeBros::getTemps(){
 	return this->temps;
 }
+
+void HorlogeBros::setTemps(int temps){
+	this->temps = temps;
+}

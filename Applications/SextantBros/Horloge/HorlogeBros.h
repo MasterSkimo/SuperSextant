@@ -23,6 +23,7 @@ public:
 	virtual ~HorlogeBros();
 	void run();
 	int getTemps();
+	void setTemps(int temps);
 
 };
 
