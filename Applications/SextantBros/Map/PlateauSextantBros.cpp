@@ -46,7 +46,7 @@ void PlateauSextantBros::bougerDroite(bool saut) {
 	if ((etatHaut == FOND || etatHaut == PIECE)
 			&& (etatBas == FOND || etatBas == PIECE)) {
 
-		// Incrémentation Piece
+		// IncrÃ©mentation Piece
 		if (etatHaut == PIECE)
 			this->incrementerPiece();
 		if (etatBas == PIECE)
@@ -114,7 +114,6 @@ void PlateauSextantBros::sauter() {
 				this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
 				this->rafraichir();
 
-
 				char c = clavier->getChar();
 
 				switch (c) {
@@ -128,7 +127,8 @@ void PlateauSextantBros::sauter() {
 				}
 			} else {
 				i = 5;
-				if (CaseHaut->getEtat() == BOITEPIECE || CaseHaut->getEtat() == BOITECHAMPI)
+				if (CaseHaut->getEtat() == BOITEPIECE
+						|| CaseHaut->getEtat() == BOITECHAMPI)
 					casserBoite(CaseHaut);
 			}
 			i++;
@@ -140,22 +140,22 @@ void PlateauSextantBros::sauter() {
 
 }
 
-void PlateauSextantBros::casserBoite(Case *laCase){
-	if (laCase->getEtat() == BOITEPIECE){
+void PlateauSextantBros::casserBoite(Case *laCase) {
+	if (laCase->getEtat() == BOITEPIECE) {
 		this->incrementerPiece(10);
 	}
 
-	else if(laCase->getEtat() == BOITECHAMPI && !this->mario.getSuper()){
+	else if (laCase->getEtat() == BOITECHAMPI && !this->mario.getSuper()) {
 		this->mario.grandir();
 		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
 	}
 
 	laCase->setCaseBord();
 	if (this->tabLevel[this->mario.getHaut() - 1][this->mario.getY() - 1].getEtat() == BOITEPIECE
-			|| this->tabLevel[this->mario.getHaut() - 1][this->mario.getY() - 1].getEtat() == BOITECHAMPI )
-				this->tabLevel[this->mario.getHaut() - 1][this->mario.getY() - 1].setCaseBord();
-			else
-				this->tabLevel[this->mario.getHaut() - 1][this->mario.getY() + 1].setCaseBord();
+	|| this->tabLevel[this->mario.getHaut() - 1][this->mario.getY() - 1].getEtat() == BOITECHAMPI)
+		this->tabLevel[this->mario.getHaut() - 1][this->mario.getY() - 1].setCaseBord();
+	else
+		this->tabLevel[this->mario.getHaut() - 1][this->mario.getY() + 1].setCaseBord();
 
 	this->rafraichir();
 }
@@ -495,6 +495,7 @@ void PlateauSextantBros::introduction() {
 	for (int x = 0; x < HAUTEUR; x++) {
 		for (int y = 0; y < LARGEUR; y++) {
 			this->tab[x][y] = &(this->tabIntro[x][y]);
+			this->tab[x][y]->paint(x,y);
 		}
 	}
 }
@@ -574,15 +575,15 @@ void PlateauSextantBros::level() {
 
 	this->genererEscalier(272, 12, 4, false);
 
-	this->genererLigne(23,268,6, BORD);
-	this->genererLigne(22,268,6, BORD);
-	this->genererLigne(21,268,6, BORD);
-	this->genererLigne(20,268,6, BORD);
-	this->genererLigne(19,268,6, BORD);
-	this->genererLigne(18,268,6, BORD);
-	this->genererLigne(17,268,6, BORD);
-	this->genererLigne(16,268,6, BORD);
-	this->genererLigne(15,268,6, BORD);
+	this->genererLigne(23, 268, 6, BORD);
+	this->genererLigne(22, 268, 6, BORD);
+	this->genererLigne(21, 268, 6, BORD);
+	this->genererLigne(20, 268, 6, BORD);
+	this->genererLigne(19, 268, 6, BORD);
+	this->genererLigne(18, 268, 6, BORD);
+	this->genererLigne(17, 268, 6, BORD);
+	this->genererLigne(16, 268, 6, BORD);
+	this->genererLigne(15, 268, 6, BORD);
 
 	// Ligne
 	this->genererLigne(18, 48, 4, BORD);
@@ -607,7 +608,7 @@ void PlateauSextantBros::level() {
 	this->genererLigne(24, 251, 2, TROU);
 	this->genererLigne(24, 256, 2, TROU);
 
-	// Pièces
+	// PiÃ¨ces
 	this->tabLevel[22][14].setCasePiece();
 	this->tabLevel[22][16].setCasePiece();
 	this->tabLevel[22][18].setCasePiece();
@@ -664,7 +665,6 @@ void PlateauSextantBros::level() {
 	this->tabLevel[13][271].setCasePiece();
 	this->tabLevel[13][273].setCasePiece();
 
-
 	// Bandeau Haut
 	for (int y = 0; y < 300; y++) {
 		this->tabLevel[0][y].setCaseBord();
@@ -690,8 +690,8 @@ void PlateauSextantBros::rafraichir() {
 			int deb = -41;
 			for (int x = 0; x < HAUTEUR; x++) {
 				for (int y = 0; y < LARGEUR; y++) {
-					this->tab[x][y] =
-							&(this->tabLevel[x][this->mario.getY() + deb]);
+					this->tab[x][y] = &(this->tabLevel[x][this->mario.getY()
+							+ deb]);
 					deb++;
 				}
 				deb = -41;
@@ -766,19 +766,19 @@ void PlateauSextantBros::genererLigne(int posX, int posY, int t, int type) {
 void PlateauSextantBros::incrementerPiece() {
 	this->score += 10;
 	this->pieces++;
-	if (this->pieces >= 100){
-		this->pieces -= 100 ;
+	if (this->pieces >= 100) {
+		this->pieces -= 100;
 		this->vie++;
 	}
 }
 
 void PlateauSextantBros::incrementerPiece(int nbPieces) {
-	this->score += nbPieces*10;
+	this->score += nbPieces * 10;
 	this->pieces += nbPieces;
 
-	if (this->pieces >= 100){
+	if (this->pieces >= 100) {
 		this->pieces -= 100;
-		this->vie ++;
+		this->vie++;
 	}
 }
 
@@ -793,12 +793,11 @@ void PlateauSextantBros::initBandeau() {
 	this->ecran->afficherBase(this->horloge->getTemps(), 10, BLANC);
 }
 
-void PlateauSextantBros::perdreVie(){
-	this->vie --;
+void PlateauSextantBros::perdreVie() {
+	this->vie--;
 	if (this->vie <= 0)
 		this->perdu();
-	else
-	{
+	else {
 		this->mario.setBas(23);
 		this->mario.setHaut(23);
 		this->mario.setY(5);
@@ -808,6 +807,267 @@ void PlateauSextantBros::perdreVie(){
 	}
 }
 
-void PlateauSextantBros::perdu(){
-	this->ecran->effacerEcranV(NOIR);
+void PlateauSextantBros::perdu() {
+	for (int x = 0; x < HAUTEUR; x++) {
+		for (int y = 0; y < LARGEUR; y++) {
+			tabIntro[x][y].init(x, y);
+			this->tabIntro[x][y].setEcran(this->ecran);
+		}
+	}
+
+	// P
+	this->tabIntro[11][47].setCaseBord();
+	this->tabIntro[12][47].setCaseBord();
+	this->tabIntro[13][47].setCaseBord();
+	this->tabIntro[14][47].setCaseBord();
+	this->tabIntro[15][47].setCaseBord();
+	this->tabIntro[11][48].setCaseBord();
+	this->tabIntro[13][48].setCaseBord();
+	this->tabIntro[11][49].setCaseBord();
+	this->tabIntro[13][49].setCaseBord();
+	this->tabIntro[11][50].setCaseBord();
+	this->tabIntro[12][50].setCaseBord();
+	this->tabIntro[13][50].setCaseBord();
+
+	//E
+	this->tabIntro[11][52].setCaseBord();
+	this->tabIntro[12][52].setCaseBord();
+	this->tabIntro[13][52].setCaseBord();
+	this->tabIntro[14][52].setCaseBord();
+	this->tabIntro[15][52].setCaseBord();
+	this->tabIntro[11][53].setCaseBord();
+	this->tabIntro[13][53].setCaseBord();
+	this->tabIntro[15][53].setCaseBord();
+	this->tabIntro[11][54].setCaseBord();
+	this->tabIntro[13][54].setCaseBord();
+	this->tabIntro[15][54].setCaseBord();
+	this->tabIntro[11][55].setCaseBord();
+	this->tabIntro[15][55].setCaseBord();
+
+	// R
+	this->tabIntro[11][57].setCaseBord();
+	this->tabIntro[12][57].setCaseBord();
+	this->tabIntro[13][57].setCaseBord();
+	this->tabIntro[14][57].setCaseBord();
+	this->tabIntro[15][57].setCaseBord();
+	this->tabIntro[11][58].setCaseBord();
+	this->tabIntro[13][58].setCaseBord();
+	this->tabIntro[11][59].setCaseBord();
+	this->tabIntro[13][59].setCaseBord();
+	this->tabIntro[11][60].setCaseBord();
+	this->tabIntro[13][60].setCaseBord();
+	this->tabIntro[14][60].setCaseBord();
+	this->tabIntro[11][61].setCaseBord();
+	this->tabIntro[12][61].setCaseBord();
+	this->tabIntro[13][61].setCaseBord();
+	this->tabIntro[15][61].setCaseBord();
+
+	// D
+	this->tabIntro[11][63].setCaseBord();
+	this->tabIntro[12][63].setCaseBord();
+	this->tabIntro[13][63].setCaseBord();
+	this->tabIntro[14][63].setCaseBord();
+	this->tabIntro[15][63].setCaseBord();
+	this->tabIntro[11][64].setCaseBord();
+	this->tabIntro[15][64].setCaseBord();
+	this->tabIntro[11][65].setCaseBord();
+	this->tabIntro[15][65].setCaseBord();
+	this->tabIntro[11][66].setCaseBord();
+	this->tabIntro[15][66].setCaseBord();
+	this->tabIntro[12][67].setCaseBord();
+	this->tabIntro[13][67].setCaseBord();
+	this->tabIntro[14][67].setCaseBord();
+
+	// U
+	this->tabIntro[11][69].setCaseBord();
+	this->tabIntro[12][69].setCaseBord();
+	this->tabIntro[13][69].setCaseBord();
+	this->tabIntro[14][69].setCaseBord();
+	this->tabIntro[15][69].setCaseBord();
+	this->tabIntro[15][70].setCaseBord();
+	this->tabIntro[15][71].setCaseBord();
+	this->tabIntro[11][72].setCaseBord();
+	this->tabIntro[12][72].setCaseBord();
+	this->tabIntro[13][72].setCaseBord();
+	this->tabIntro[14][72].setCaseBord();
+	this->tabIntro[15][72].setCaseBord();
+
+	// !
+	this->tabIntro[11][75].setCaseBord();
+	this->tabIntro[12][75].setCaseBord();
+	this->tabIntro[13][75].setCaseBord();
+	this->tabIntro[15][75].setCaseBord();
+
+	for (int x = 0; x < HAUTEUR; x++) {
+		for (int y = 0; y < LARGEUR; y++) {
+			this->tab[x][y] = &(this->tabIntro[x][y]);
+			this->tab[x][y]->paint(x, y);
+		}
+	}
+
+	this->marioAscii();
+}
+
+void PlateauSextantBros::victory() {
+	for (int x = 0; x < HAUTEUR; x++) {
+		for (int y = 0; y < LARGEUR; y++) {
+			tabIntro[x][y].init(x, y);
+			this->tabIntro[x][y].setEcran(this->ecran);
+		}
+	}
+
+	// B
+	this->tabIntro[11][47].setCaseBord();
+	this->tabIntro[12][47].setCaseBord();
+	this->tabIntro[13][47].setCaseBord();
+	this->tabIntro[14][47].setCaseBord();
+	this->tabIntro[15][47].setCaseBord();
+	this->tabIntro[11][48].setCaseBord();
+	this->tabIntro[13][48].setCaseBord();
+	this->tabIntro[15][48].setCaseBord();
+	this->tabIntro[11][49].setCaseBord();
+	this->tabIntro[12][49].setCaseBord();
+	this->tabIntro[13][49].setCaseBord();
+	this->tabIntro[15][49].setCaseBord();
+	this->tabIntro[13][50].setCaseBord();
+	this->tabIntro[14][50].setCaseBord();
+	this->tabIntro[15][50].setCaseBord();
+
+	// R
+	this->tabIntro[11][52].setCaseBord();
+	this->tabIntro[12][52].setCaseBord();
+	this->tabIntro[13][52].setCaseBord();
+	this->tabIntro[14][52].setCaseBord();
+	this->tabIntro[15][52].setCaseBord();
+	this->tabIntro[11][53].setCaseBord();
+	this->tabIntro[13][53].setCaseBord();
+	this->tabIntro[11][54].setCaseBord();
+	this->tabIntro[13][54].setCaseBord();
+	this->tabIntro[11][55].setCaseBord();
+	this->tabIntro[13][55].setCaseBord();
+	this->tabIntro[14][55].setCaseBord();
+	this->tabIntro[11][56].setCaseBord();
+	this->tabIntro[12][56].setCaseBord();
+	this->tabIntro[13][56].setCaseBord();
+	this->tabIntro[15][56].setCaseBord();
+
+	// A
+	this->tabIntro[11][58].setCaseBord();
+	this->tabIntro[12][58].setCaseBord();
+	this->tabIntro[13][58].setCaseBord();
+	this->tabIntro[14][58].setCaseBord();
+	this->tabIntro[15][58].setCaseBord();
+	this->tabIntro[11][59].setCaseBord();
+	this->tabIntro[13][59].setCaseBord();
+	this->tabIntro[11][60].setCaseBord();
+	this->tabIntro[13][60].setCaseBord();
+	this->tabIntro[11][61].setCaseBord();
+	this->tabIntro[12][61].setCaseBord();
+	this->tabIntro[13][61].setCaseBord();
+	this->tabIntro[14][61].setCaseBord();
+	this->tabIntro[15][61].setCaseBord();
+
+	// V
+	this->tabIntro[11][63].setCaseBord();
+	this->tabIntro[12][63].setCaseBord();
+	this->tabIntro[13][64].setCaseBord();
+	this->tabIntro[14][64].setCaseBord();
+	this->tabIntro[15][65].setCaseBord();
+	this->tabIntro[13][66].setCaseBord();
+	this->tabIntro[14][66].setCaseBord();
+	this->tabIntro[11][67].setCaseBord();
+	this->tabIntro[12][67].setCaseBord();
+
+	// O
+	this->tabIntro[11][69].setCaseBord();
+	this->tabIntro[12][69].setCaseBord();
+	this->tabIntro[13][69].setCaseBord();
+	this->tabIntro[14][69].setCaseBord();
+	this->tabIntro[15][69].setCaseBord();
+	this->tabIntro[11][70].setCaseBord();
+	this->tabIntro[15][70].setCaseBord();
+	this->tabIntro[11][71].setCaseBord();
+	this->tabIntro[15][71].setCaseBord();
+	this->tabIntro[11][72].setCaseBord();
+	this->tabIntro[12][72].setCaseBord();
+	this->tabIntro[13][72].setCaseBord();
+	this->tabIntro[14][72].setCaseBord();
+	this->tabIntro[15][72].setCaseBord();
+
+	// !
+	this->tabIntro[11][75].setCaseBord();
+	this->tabIntro[12][75].setCaseBord();
+	this->tabIntro[13][75].setCaseBord();
+	this->tabIntro[15][75].setCaseBord();
+
+	for (int x = 0; x < HAUTEUR; x++) {
+		for (int y = 0; y < LARGEUR; y++) {
+			this->tab[x][y] = &(this->tabIntro[x][y]);
+			this->tab[x][y]->paint(x, y);
+		}
+	}
+
+	this->marioAscii();
+
+}
+
+void PlateauSextantBros::marioAscii() {
+//1
+	this->ecran->afficherMot(5, 19, "/////////////", ROUGE);
+//2
+	this->ecran->afficherMot(6, 14, "//////////////////", ROUGE);
+//3
+	this->ecran->afficherMot(7, 12, "/////////////////", ROUGE);
+	this->ecran->afficherMot(7, 29, "111", BLANC);
+//4
+	this->ecran->afficherMot(8, 10, "/////////////////", ROUGE);
+	this->ecran->afficherMot(8, 27, "11111", BLANC);
+//5
+	this->ecran->afficherMot(9, 10, "//////////////////////////////", ROUGE);
+//6
+	this->ecran->afficherMot(10, 11, "/////////////////////////////", ROUGE);
+//7
+	this->ecran->afficherMot(11, 9, "$$$$$$$$$", MARRON);
+	this->ecran->afficherMot(11, 18, "11111111111111111", BLANC);
+//8
+	this->ecran->afficherMot(12, 8, "$$$$", MARRON);
+	this->ecran->afficherMot(12, 12, "1111", BLANC);
+	this->ecran->afficherMot(12, 16, "$$$", MARRON);
+	this->ecran->afficherMot(12, 19, "111111", BLANC);
+	this->ecran->afficherMot(12, 25, "$$$", NOIR);
+	this->ecran->afficherMot(12, 28, "111111111111", BLANC);
+//9
+	this->ecran->afficherMot(13, 7, "$$$$", MARRON);
+	this->ecran->afficherMot(13, 11, "11111", BLANC);
+	this->ecran->afficherMot(13, 16, "$$$$$", MARRON);
+	this->ecran->afficherMot(13, 21, "11111111111111111111", BLANC);
+//10
+	this->ecran->afficherMot(14, 6, "$$$$", MARRON);
+	this->ecran->afficherMot(14, 11, "11111", BLANC);
+	this->ecran->afficherMot(14, 16, "$$$$$", MARRON);
+	this->ecran->afficherMot(14, 21, "11111111111111111111", BLANC);
+//11
+	this->ecran->afficherMot(15, 5, "$$$$$", MARRON);
+	this->ecran->afficherMot(15, 10, "1111111", BLANC);
+	this->ecran->afficherMot(15, 17, "$$$$", MARRON);
+	this->ecran->afficherMot(15, 21, "11111111", BLANC);
+	this->ecran->afficherMot(15, 29, "$$$$", MARRON);
+	this->ecran->afficherMot(15, 33, "11111111", BLANC);
+//12
+	this->ecran->afficherMot(16, 5, "$$$$$$", MARRON);
+	this->ecran->afficherMot(16, 11, "1111111111111", BLANC);
+	this->ecran->afficherMot(16, 24, "$$$$$$$$$$$$$$$$", MARRON);
+//13
+	this->ecran->afficherMot(17, 5, "$$$$$$$$", MARRON);
+	this->ecran->afficherMot(17, 13, "11111111111111", BLANC);
+	this->ecran->afficherMot(17, 27, "$$$$$$$$$$$$$", MARRON);
+//14
+	this->ecran->afficherMot(18, 9, "$$$$$$", MARRON);
+	this->ecran->afficherMot(18, 15, "11111111111111111111111", BLANC);
+//15
+	this->ecran->afficherMot(19, 11, "$$$$$", MARRON);
+	this->ecran->afficherMot(19, 16, "1111111111111111111", BLANC);
+//16
+	this->ecran->afficherMot(20, 15, "111111111111111111", BLANC);
+
 }

@@ -139,6 +139,7 @@ public :
 	 */
 	void afficherMot(const char *mot,Couleur premierPlan=BLANC);
 	void afficherMot(int l,int c,const char *mot,Couleur premierPlan=BLANC);
+	void ecrireMot(int l,int c,const char *mot,Couleur arrierePlan,Couleur premierPlan=BLANC);
 
 	/**
 	 * Affiche un entier ра la position courante de couleur prPlan (blanc par defaut)

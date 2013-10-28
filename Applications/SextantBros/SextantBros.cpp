@@ -32,15 +32,8 @@ void SextantBros::run() {
 	this->launch();
 
 	// Introduction
+	this->plateau->perdu();
 	this->plateau->introduction();
-	for (int i = 0; i < 2; i++) {
-		ecran->effacerEcranV(NOIR);
-		for (int x = 0; x < HAUTEUR; x++) {
-			for (int y = 0; y < LARGEUR; y++) {
-				this->plateau->tab[x][y]->paint(x, y);
-			}
-		}
-	}
 	this->clavier->getChar();
 
 	// Lancement du niveau

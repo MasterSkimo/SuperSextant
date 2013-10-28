@@ -49,6 +49,9 @@ public :
 	void tomber();
 	void introduction();
 	void level();
+	void gameOver();
+	void marioAscii();
+	void victory();
 	void rafraichir();
 	void incrementerPiece();
 	void incrementerPiece(int nbPieces);
