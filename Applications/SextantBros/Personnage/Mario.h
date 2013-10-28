@@ -19,6 +19,9 @@ public:
 	int getHaut();
 	int getBas();
 	int getY();
+	bool getSuper();
+	void grandir();
+	void retrecir();
 };
 
 #endif /* MARIO_H_ */

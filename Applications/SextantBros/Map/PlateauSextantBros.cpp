@@ -18,7 +18,7 @@ PlateauSextantBros::PlateauSextantBros(EcranV *e, ClavierV *c, HorlogeBros *h) {
 	this->niveauTermine = false;
 	this->numLvl = 0;
 	this->mario.setBas(23);
-	this->mario.setHaut(22);
+	this->mario.setHaut(23);
 	this->mario.setY(5);
 }
 
@@ -144,11 +144,12 @@ void PlateauSextantBros::casserBoite(Case *laCase){
 	if (laCase->getEtat() == BOITEPIECE){
 		this->incrementerPiece(10);
 	}
-	/*
-	else (laCase->getEtat() == BOITECHAMPI){
-		this->mario->grandir();
+
+	else if(laCase->getEtat() == BOITECHAMPI && !this->mario.getSuper()){
+		this->mario.grandir();
+		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
 	}
-	*/
+
 	laCase->setCaseBord();
 	if (this->tabLevel[this->mario.getHaut() - 1][this->mario.getY() - 1].getEtat() == BOITEPIECE
 			|| this->tabLevel[this->mario.getHaut() - 1][this->mario.getY() - 1].getEtat() == BOITECHAMPI )
@@ -795,7 +796,7 @@ void PlateauSextantBros::perdreVie(){
 	else
 	{
 		this->mario.setBas(23);
-		this->mario.setHaut(22);
+		this->mario.setHaut(23);
 		this->mario.setY(5);
 		this->level();
 		this->rafraichir();
