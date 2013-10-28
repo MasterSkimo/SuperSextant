@@ -1,0 +1,39 @@
+/*
+ * PlateauSextantBros.h
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: Matthieu Gutierrez
+ */
+
+#ifndef PLATEAUSEXTANTBROS_H_
+#define PLATEAUSEXTANTBROS_H_
+
+#include "Level.h"
+#include "Case.h"
+
+class PlateauSextantBros {
+public :
+	Level lvl;
+	int numLvl;
+	Mario mario;
+	bool niveauTermine1;
+	bool niveauTermine2;
+	bool niveauTermine3;
+	EcranV *ecran;
+	int score;
+	int vie;
+	int timer;
+	Case tab[80][40];
+
+	// Constructeur
+	PlateauSextantBros(EcranV * , Level);
+
+	// Level
+	void initLevel1(EcranV *ecranV, Level lvl);
+	void initLevel2(EcranV *ecranV, Level lvl);
+	void initLevel3(EcranV *ecranV, Level lvl);
+};
+
+
+
+#endif /* PLATEAUSEXTANTBROS_H_ */

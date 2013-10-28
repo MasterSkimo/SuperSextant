@@ -1,0 +1,24 @@
+/*
+ * Level.h
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: Matthieu Gutierrez
+ */
+
+#ifndef LEVEL_H_
+#define LEVEL_H_
+
+#include "Case.h"
+
+class Level {
+public:
+	PlateauSextantBros plateau;
+	Level(PlateauSextantBros *);
+	void generer(int);
+	void introduction();
+	void level1();
+	void level2();
+	void level3();
+};
+
+#endif /* LEVEL_H_ */

@@ -1,0 +1,19 @@
+/*
+ * Champi.h
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: clement
+ */
+
+#ifndef CHAMPI_H_
+#define CHAMPI_H_
+
+#include "Objet.h"
+
+class Champi: public Objet {
+public:
+	Champi();
+	virtual ~Champi();
+};
+
+#endif /* CHAMPI_H_ */

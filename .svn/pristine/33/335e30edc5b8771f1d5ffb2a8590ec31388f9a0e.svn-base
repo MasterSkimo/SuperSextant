@@ -1,0 +1,19 @@
+/*
+ * BlocSol.cpp
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: clement
+ */
+
+#include "BlocSol.h"
+
+BlocSol::BlocSol() {
+	hauteur = 1;
+	couleur = VERT;
+
+}
+
+BlocSol::~BlocSol() {
+	// TODO Auto-generated destructor stub
+}
+

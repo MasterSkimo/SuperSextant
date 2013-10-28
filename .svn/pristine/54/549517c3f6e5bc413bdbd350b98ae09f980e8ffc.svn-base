@@ -1,0 +1,20 @@
+/*
+ * Objet.h
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: clement
+ */
+
+#ifndef OBJET_H_
+#define OBJET_H_
+
+class Objet {
+public:
+	Couleur couleur;
+	int largeur, hauteur;
+
+	Objet();
+	virtual ~Objet();
+};
+
+#endif /* OBJET_H_ */

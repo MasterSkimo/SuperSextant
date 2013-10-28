@@ -1,0 +1,23 @@
+/*
+ * Mario.h
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: Gwenaël
+ */
+
+#ifndef MARIO_H_
+#define MARIO_H_
+
+#include <drivers/EcranV.h>
+
+class Mario : Threads {
+	EcranV *ecran;
+public:
+	Mario(EcranV *ecran);
+	void sauter();
+	void bouger(bool direction);
+	void run();
+
+};
+
+#endif /* MARIO_H_ */

@@ -1,0 +1,20 @@
+/*
+ * Bloc.h
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: clement
+ */
+
+#ifndef BLOC_H_
+#define BLOC_H_
+
+#include "Objet.h"
+
+class Bloc: public Objet {
+public:
+
+	Bloc();
+	virtual ~Bloc();
+};
+
+#endif /* BLOC_H_ */

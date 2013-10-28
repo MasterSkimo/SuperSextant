@@ -1,0 +1,19 @@
+/*
+ * BlocSurprise.h
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: clement
+ */
+
+#ifndef BLOCSURPRISE_H_
+#define BLOCSURPRISE_H_
+
+#include "Bloc.h"
+
+class BlocSurprise: public Bloc {
+public:
+	BlocSurprise();
+	virtual ~BlocSurprise();
+};
+
+#endif /* BLOCSURPRISE_H_ */

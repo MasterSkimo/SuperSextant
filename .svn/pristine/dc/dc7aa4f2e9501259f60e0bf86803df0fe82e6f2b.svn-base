@@ -1,0 +1,18 @@
+/*
+ * BlocTube.cpp
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: clement
+ */
+
+#include "BlocTube.h"
+
+BlocTube::BlocTube() {
+	// TODO Auto-generated constructor stub
+
+}
+
+BlocTube::~BlocTube() {
+	// TODO Auto-generated destructor stub
+}
+

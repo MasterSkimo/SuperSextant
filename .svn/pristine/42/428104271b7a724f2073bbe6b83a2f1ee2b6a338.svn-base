@@ -1,0 +1,19 @@
+/*
+ * Objet.cpp
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: clement
+ */
+
+#include "Objet.h"
+
+Objet::Objet() {
+	largeur = 6;
+	hauteur = 3;
+	couleur = MARRON;
+}
+
+Objet::~Objet() {
+	// TODO Auto-generated destructor stub
+}
+

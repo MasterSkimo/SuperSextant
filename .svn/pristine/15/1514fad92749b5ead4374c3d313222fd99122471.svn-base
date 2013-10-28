@@ -1,0 +1,19 @@
+/*
+ * BlocTube.h
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: clement
+ */
+
+#ifndef BLOCTUBE_H_
+#define BLOCTUBE_H_
+
+#include "Bloc.h"
+
+class BlocTube: public Bloc {
+public:
+	BlocTube();
+	virtual ~BlocTube();
+};
+
+#endif /* BLOCTUBE_H_ */

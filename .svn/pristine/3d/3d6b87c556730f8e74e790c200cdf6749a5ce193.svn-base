@@ -1,0 +1,17 @@
+/*
+ * Piece.cpp
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: clement
+ */
+
+#include "Piece.h"
+
+Piece::Piece() {
+	couleur = BLANC;
+}
+
+Piece::~Piece() {
+	// TODO Auto-generated destructor stub
+}
+

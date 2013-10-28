@@ -1,0 +1,29 @@
+/*
+ * Mario.cpp
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: Gwenaël
+ */
+
+#include <Applications/SextantBros/Personnage/Mario.h>
+
+Mario::Mario(EcranV *ecran) {
+	this->ecran = *ecran;
+
+}
+void Mario::sauter() {
+
+}
+
+// Direction True = DROITE / False = Gauche
+void Mario::bouger(bool direction) {
+	if (direction)
+		ecran->defilementCol(1);
+	else
+		ecran->defilementCol(-1);
+}
+
+void Mario::run() {
+
+}
+

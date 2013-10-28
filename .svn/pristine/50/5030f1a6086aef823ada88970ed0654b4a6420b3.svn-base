@@ -1,0 +1,18 @@
+/*
+ * BlocSurprise.cpp
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: clement
+ */
+
+#include "BlocSurprise.h"
+
+BlocSurprise::BlocSurprise() {
+	// TODO Auto-generated constructor stub
+
+}
+
+BlocSurprise::~BlocSurprise() {
+	// TODO Auto-generated destructor stub
+}
+

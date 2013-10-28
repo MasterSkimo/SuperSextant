@@ -1,0 +1,17 @@
+/*
+ * Bloc.cpp
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: clement
+ */
+
+#include "Bloc.h"
+
+Bloc::Bloc() {
+
+}
+
+Bloc::~Bloc() {
+	// TODO Auto-generated destructor stub
+}
+

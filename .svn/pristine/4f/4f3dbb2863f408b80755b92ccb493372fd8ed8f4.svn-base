@@ -1,0 +1,37 @@
+/*
+ * PlateauSextantBros.cpp
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: Matthieu Gutierrez
+ */
+
+#include "PlateauSextantBros.h"
+
+// Constructeur du plateau
+PlateauSextantBros::PlateauSextantBros(EcranV *e, Level lvl) {
+	this->ecran = e;
+	this->score = 0;
+	this->vie = 0;
+	this->niveauTermine1 = false;
+	this->niveauTermine2 = false;
+	this->niveauTermine3 = false;
+	this->timer = 500;
+	this->numLvl = 0;
+	initLevel1(e, lvl);
+}
+
+void PlateauSextantBros::initLevel1(EcranV *e, Level lvl) {
+	lvl.level1();
+	this->numLvl = 1;
+}
+
+void PlateauSextantBros::initLevel2(EcranV *e, Level lvl) {
+	lvl.level2();
+	this->numLvl = 2;
+}
+
+void PlateauSextantBros::initLevel3(EcranV *e, Level lvl) {
+	lvl.level3();
+	this->numLvl = 3;
+}
+

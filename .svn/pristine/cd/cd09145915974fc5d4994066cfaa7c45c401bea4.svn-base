@@ -1,0 +1,19 @@
+/*
+ * BlocSol.h
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: clement
+ */
+
+#ifndef BLOCSOL_H_
+#define BLOCSOL_H_
+
+#include "Bloc.h"
+
+class BlocSol: public Bloc {
+public:
+	BlocSol();
+	virtual ~BlocSol();
+};
+
+#endif /* BLOCSOL_H_ */

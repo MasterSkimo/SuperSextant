@@ -1,0 +1,19 @@
+/*
+ * BlocDur.h
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: clement
+ */
+
+#ifndef BLOCDUR_H_
+#define BLOCDUR_H_
+
+#include "Bloc.h"
+
+class BlocDur: public Bloc {
+public:
+	BlocDur();
+	virtual ~BlocDur();
+};
+
+#endif /* BLOCDUR_H_ */

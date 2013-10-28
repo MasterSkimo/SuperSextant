@@ -1,0 +1,31 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+/***
+ * @file config.h
+ * @brief Fichier de configuration du jeu. 
+ * N.B. : Les zones doivent etre entourees par un espace vide.
+ * Les zones doivent etre inclues les unes dans les autres
+ ***/
+
+/*** Type des cases ***/
+#define FOND 				0
+#define BORD				10
+#define TROU				20
+#define GUMBA				30
+#define MARIO				40
+#define PORTAIL				50
+#define TUBE				60
+#define BOITECHAMPI			70
+#define BOITEPIECE			80
+#define PIECE				90
+
+/*** Taille du jeu ***/
+#define LARGEUR 	80
+#define HAUTEUR 	25
+
+
+enum Direction{
+	HAUT,BAS,DROITE,GAUCHE,NULLE
+};
+#endif

@@ -1,0 +1,17 @@
+/*
+ * Champi.cpp
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: clement
+ */
+
+#include "Champi.h"
+
+Champi::Champi() {
+
+}
+
+Champi::~Champi() {
+	// TODO Auto-generated destructor stub
+}
+

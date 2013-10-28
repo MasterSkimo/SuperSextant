@@ -1,0 +1,17 @@
+/*
+ * BlocDur.cpp
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: clement
+ */
+
+#include "BlocDur.h"
+
+BlocDur::BlocDur() {
+
+}
+
+BlocDur::~BlocDur() {
+	// TODO Auto-generated destructor stub
+}
+

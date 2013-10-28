@@ -1,0 +1,31 @@
+/*
+ * Mario.h
+ *
+ *  Created on: 24 oct. 2013
+ *      Author: Gwenaël
+ */
+
+#ifndef MARIO_H_
+#define MARIO_H_
+
+#include <drivers/EcranV.h>
+#include <Applications/SextantBros/config.h>
+
+class Mario : Threads {
+	EcranV *ecran;
+	PlateauSextantBros *plateauSextantBros;
+	int x, y;
+	int tailleLevel;
+	void sauterMonter();
+	bool sauterDescendre();
+	void DescendreMario();
+
+public:
+	Mario(EcranV *ecran, int x, int y, PlateauSextantBros *plateauSextantBros, int tailleLevel);
+	void sauter();
+	void bouger(bool direction);
+	void run();
+
+};
+
+#endif /* MARIO_H_ */
