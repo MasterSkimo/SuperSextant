@@ -9,7 +9,9 @@
 #define SEXTANTBROS_H_
 
 #include <drivers/ClavierV.h>
+
 #include "Map/PlateauSextantBros.h"
+#include "Horloge/HorlogeBros.h"
 
 #include "config.h"
 #include <sextant/Activite/Threads.h>
@@ -18,6 +20,7 @@ class SextantBros : public Threads {
 	PlateauSextantBros *plateau;
 	ClavierV *clavier;
 	EcranV *ecran;
+	HorlogeBros *horloge;
 public:
 	SextantBros();
 	SextantBros(EcranV *e, ClavierV *c, PlateauSextantBros *p );

@@ -23,7 +23,8 @@ SextantBros::~SextantBros() {
 }
 
 void SextantBros::launch() {
-	this->plateau = new PlateauSextantBros(this->ecran, this->clavier);
+	this->horloge = new HorlogeBros(this->ecran);
+	this->plateau = new PlateauSextantBros(this->ecran, this->clavier, this->horloge);
 }
 
 void SextantBros::run() {
@@ -36,7 +37,7 @@ void SextantBros::run() {
 		ecran->effacerEcranV(NOIR);
 		for (int x = 0; x < HAUTEUR; x++) {
 			for (int y = 0; y < LARGEUR; y++) {
-				this->plateau->tab[x][y]->paint(x,y);
+				this->plateau->tab[x][y]->paint(x, y);
 			}
 		}
 	}
@@ -44,9 +45,10 @@ void SextantBros::run() {
 
 	// Lancement du niveau
 	this->plateau->level();
+	this->horloge->start("Horloge");
 	for (int x = 0; x < HAUTEUR; x++) {
 		for (int y = 0; y < LARGEUR; y++) {
-			this->plateau->tab[x][y]->paint(x,y);
+			this->plateau->tab[x][y]->paint(x, y);
 		}
 	}
 	this->plateau->initBandeau();

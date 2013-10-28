@@ -8,14 +8,14 @@
 #include "PlateauSextantBros.h"
 
 // Constructeur du plateau
-PlateauSextantBros::PlateauSextantBros(EcranV *e, ClavierV *c) {
+PlateauSextantBros::PlateauSextantBros(EcranV *e, ClavierV *c, HorlogeBros *h) {
 	this->ecran = e;
 	this->clavier = c;
+	this->horloge = h;
 	this->score = 0;
 	this->pieces = 0;
 	this->vie = 3;
 	this->niveauTermine = false;
-	this->timer = 500;
 	this->numLvl = 0;
 	this->mario.setBas(23);
 	this->mario.setHaut(22);
@@ -491,10 +491,6 @@ void PlateauSextantBros::introduction() {
 	this->tabIntro[14][56].setCaseBord();
 	this->tabIntro[14][57].setCaseBord();
 
-	//Mario
-	this->tabIntro[this->mario.getBas()][this->mario.getY()].setCaseMario();
-	this->tabIntro[this->mario.getHaut()][this->mario.getY()].setCaseMario();
-
 	for (int x = 0; x < HAUTEUR; x++) {
 		for (int y = 0; y < LARGEUR; y++) {
 			this->tab[x][y] = &(this->tabIntro[x][y]);
@@ -789,7 +785,7 @@ void PlateauSextantBros::initBandeau() {
 	this->ecran->afficherMot(0, 30, "Pieces : ", BLANC);
 	this->ecran->afficherBase(this->pieces, 10, BLANC);
 	this->ecran->afficherMot(0, 44, "Temps : ", BLANC);
-	this->ecran->afficherBase(this->vie, 10, BLANC);
+	this->ecran->afficherBase(this->horloge->getTemps(), 10, BLANC);
 }
 
 void PlateauSextantBros::perdreVie(){

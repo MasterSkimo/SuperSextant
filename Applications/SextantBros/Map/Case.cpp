@@ -132,6 +132,8 @@ char Case::Caractere() {
 	switch (etat) {
 	case FOND:
 		return ' ';
+	case GUMBA:
+		return 2;
 	case PIECE:
 		return '0';
 	default:

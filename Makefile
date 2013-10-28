@@ -55,7 +55,7 @@ TestAndSet thread timer TimerSpaceInvaders Trame Top\
 EcranPMF EcranVMF \
 SuperPong Raquette RandomSP Grille  Balle \
 CasePacman JeuPacman PlateauPacman LecteurClavier LecteurTouche PersonnagePacman Pacman Blinky Clyde Inky Pinky Dijkstra \
-Case SextantBros PlateauSextantBros Level  Mario Gumpa \
+Case HorlogeBros SextantBros PlateauSextantBros Level  Mario Gumpa \
 
 
 

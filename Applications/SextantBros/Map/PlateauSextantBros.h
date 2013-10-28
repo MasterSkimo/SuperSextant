@@ -11,6 +11,7 @@
 #include "Level.h"
 #include "Case.h"
 #include "../Personnage/Mario.h"
+#include "../Horloge/HorlogeBros.h"
 #include <drivers/ClavierV.h>
 
 class PlateauSextantBros {
@@ -23,10 +24,10 @@ public :
 	int score;
 	int pieces;
 	int vie;
-	int timer;
 	Case* tab[HAUTEUR][LARGEUR];
 	Case tabLevel[HAUTEUR][300];
 	Case tabIntro[HAUTEUR][LARGEUR];
+	HorlogeBros *horloge;
 	void genererTube(int posX, int posY, int h);
 	void genererBoite(int posX, int posY, bool champi);
 	void genererEscalier(int posX, int posY, int h, bool reverse);
@@ -34,7 +35,7 @@ public :
 	void genererColonne(int posX, int posY, int t);
 
 	// Constructeur
-	PlateauSextantBros(EcranV *, ClavierV *);
+	PlateauSextantBros(EcranV *, ClavierV *, HorlogeBros *);
 
 	// Bandeau Haut
 	void initBandeau();
