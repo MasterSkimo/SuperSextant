@@ -12,7 +12,7 @@ PlateauSextantBros::PlateauSextantBros(EcranV *e, ClavierV *c) {
 	this->ecran = e;
 	this->clavier = c;
 	this->score = 0;
-	this->pieces=0;
+	this->pieces = 0;
 	this->vie = 3;
 	this->niveauTermine = false;
 	this->timer = 500;
@@ -511,19 +511,19 @@ void PlateauSextantBros::level() {
 	//7
 	this->genererTube(136, 23, 4);
 	//8
-	this->genererTube(213, 23, 9);
+	this->genererTube(211, 23, 9);
 	//9
-	this->genererTube(218, 23, 7);
+	this->genererTube(216, 23, 7);
 	//10
-	this->genererTube(223, 23, 5);
+	this->genererTube(221, 23, 5);
 	//11
-	this->genererTube(228, 23, 3);
+	this->genererTube(226, 23, 3);
 	//12
-	this->genererTube(246, 23, 3);
+	this->genererTube(244, 23, 3);
 	//13
-	this->genererTube(251, 23, 5);
+	this->genererTube(249, 23, 5);
 	//14
-	this->genererTube(256, 23, 7);
+	this->genererTube(254, 23, 7);
 
 	/* Boite  */
 	//1
@@ -548,7 +548,7 @@ void PlateauSextantBros::level() {
 
 	this->genererEscalier(86, 23, 6, true);
 
-	this->genererEscalier(204, 23, 7, false);
+	this->genererEscalier(202, 23, 7, false);
 
 	this->genererEscalier(236, 23, 4, false);
 
@@ -556,19 +556,38 @@ void PlateauSextantBros::level() {
 
 	this->genererEscalier(272, 12, 4, false);
 
+	this->genererLigne(23,268,6, BORD);
+	this->genererLigne(22,268,6, BORD);
+	this->genererLigne(21,268,6, BORD);
+	this->genererLigne(20,268,6, BORD);
+	this->genererLigne(19,268,6, BORD);
+	this->genererLigne(18,268,6, BORD);
+	this->genererLigne(17,268,6, BORD);
+	this->genererLigne(16,268,6, BORD);
+	this->genererLigne(15,268,6, BORD);
+
 	// Ligne
-	this->genererLigne(18, 48, 4);
-	this->genererLigne(18, 54, 4);
-	this->genererLigne(14, 51, 4);
-	this->genererLigne(20, 92, 5);
-	this->genererLigne(18, 98, 5);
-	this->genererLigne(16, 104, 5);
-	this->genererLigne(21, 162, 5);
-	this->genererLigne(21, 171, 5);
-	this->genererLigne(21, 180, 5);
-	this->genererLigne(17, 166, 6);
-	this->genererLigne(17, 175, 6);
-	this->genererLigne(13, 170, 6);
+	this->genererLigne(18, 48, 4, BORD);
+	this->genererLigne(18, 54, 4, BORD);
+	this->genererLigne(14, 51, 4, BORD);
+	this->genererLigne(20, 92, 5, BORD);
+	this->genererLigne(18, 98, 5, BORD);
+	this->genererLigne(16, 104, 5, BORD);
+	this->genererLigne(21, 162, 5, BORD);
+	this->genererLigne(21, 171, 5, BORD);
+	this->genererLigne(21, 180, 5, BORD);
+	this->genererLigne(17, 166, 6, BORD);
+	this->genererLigne(17, 175, 6, BORD);
+	this->genererLigne(13, 170, 6, BORD);
+
+	// Trou
+	this->genererLigne(24, 83, 2, TROU);
+	this->genererLigne(24, 164, 21, TROU);
+	this->genererLigne(24, 209, 1, TROU);
+	this->genererLigne(24, 240, 3, TROU);
+	this->genererLigne(24, 246, 2, TROU);
+	this->genererLigne(24, 251, 2, TROU);
+	this->genererLigne(24, 256, 2, TROU);
 
 	// Pièces
 	this->tabLevel[22][14].setCasePiece();
@@ -594,6 +613,39 @@ void PlateauSextantBros::level() {
 	this->tabLevel[20][130].setCasePiece();
 	this->tabLevel[18][133].setCasePiece();
 	this->tabLevel[17][136].setCasePiece();
+	this->tabLevel[19][162].setCasePiece();
+	this->tabLevel[19][164].setCasePiece();
+	this->tabLevel[19][166].setCasePiece();
+	this->tabLevel[19][171].setCasePiece();
+	this->tabLevel[19][173].setCasePiece();
+	this->tabLevel[19][175].setCasePiece();
+	this->tabLevel[19][180].setCasePiece();
+	this->tabLevel[19][182].setCasePiece();
+	this->tabLevel[19][184].setCasePiece();
+	this->tabLevel[15][166].setCasePiece();
+	this->tabLevel[15][168].setCasePiece();
+	this->tabLevel[15][170].setCasePiece();
+	this->tabLevel[15][175].setCasePiece();
+	this->tabLevel[15][177].setCasePiece();
+	this->tabLevel[15][179].setCasePiece();
+	this->tabLevel[13][210].setCasePiece();
+	this->tabLevel[13][213].setCasePiece();
+	this->tabLevel[15][215].setCasePiece();
+	this->tabLevel[15][218].setCasePiece();
+	this->tabLevel[17][220].setCasePiece();
+	this->tabLevel[17][223].setCasePiece();
+	this->tabLevel[19][225].setCasePiece();
+	this->tabLevel[19][228].setCasePiece();
+	this->tabLevel[19][243].setCasePiece();
+	this->tabLevel[19][246].setCasePiece();
+	this->tabLevel[17][248].setCasePiece();
+	this->tabLevel[17][251].setCasePiece();
+	this->tabLevel[15][253].setCasePiece();
+	this->tabLevel[15][256].setCasePiece();
+	this->tabLevel[13][269].setCasePiece();
+	this->tabLevel[13][271].setCasePiece();
+	this->tabLevel[13][273].setCasePiece();
+
 
 	// Bandeau Haut
 	for (int y = 0; y < 300; y++) {
@@ -675,9 +727,17 @@ void PlateauSextantBros::genererEscalier(int posX, int posY, int h,
 	}
 }
 
-void PlateauSextantBros::genererLigne(int posX, int posY, int t) {
+void PlateauSextantBros::genererLigne(int posX, int posY, int t, int type) {
 	for (int y = posY; y <= posY + t; y++) {
-		this->tabLevel[posX][y].setCaseBord();
+		switch (type) {
+		case BORD:
+			this->tabLevel[posX][y].setCaseBord();
+			break;
+		case TROU:
+			this->tabLevel[posX][y].setCaseTrou();
+			break;
+		}
+
 	}
 }
 

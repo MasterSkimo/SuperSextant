@@ -30,7 +30,7 @@ public :
 	void genererTube(int posX, int posY, int h);
 	void genererBoite(int posX, int posY, bool champi);
 	void genererEscalier(int posX, int posY, int h, bool reverse);
-	void genererLigne(int posX, int posY, int t);
+	void genererLigne(int posX, int posY, int t, int type);
 	void genererColonne(int posX, int posY, int t);
 
 	// Constructeur
