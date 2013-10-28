@@ -1,0 +1,6 @@
+.project
+.cproject
+.DS_Store
+.build/all-o/
+.build/boot/
+.build/
