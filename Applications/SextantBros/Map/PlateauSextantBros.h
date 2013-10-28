@@ -50,6 +50,10 @@ public :
 	void level();
 	void rafraichir();
 	void incrementerPiece();
+	void incrementerPiece(int nbPieces);
+	void perdreVie();
+	void perdu();
+	void casserBoite(Case *laCase);
 };
 
 

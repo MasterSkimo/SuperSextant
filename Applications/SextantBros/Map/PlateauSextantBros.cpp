@@ -62,7 +62,6 @@ void PlateauSextantBros::bougerDroite(bool saut) {
 		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
 
 		this->rafraichir();
-
 	}
 	if (!saut) {
 		this->tomber();
@@ -88,7 +87,6 @@ void PlateauSextantBros::bougerGauche(bool saut) {
 		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
 
 		this->rafraichir();
-
 	}
 	if (!saut) {
 		this->tomber();
@@ -100,12 +98,13 @@ void PlateauSextantBros::sauter() {
 	int etatCaseBas =
 			this->tabLevel[this->mario.getBas() + 1][this->mario.getY()].getEtat();
 	//Monter
-	if (etatCaseBas != FOND && etatCaseBas != PIECE) {
+	if (etatCaseBas != FOND && etatCaseBas != PIECE && etatCaseBas != TROU) {
 		while (i < 4) {
-			int etatCaseHaut =
-					this->tabLevel[this->mario.getHaut() - 1][this->mario.getY()].getEtat();
-			if (etatCaseHaut == FOND || etatCaseHaut == PIECE) {
-				if (etatCaseHaut == PIECE)
+			Case* CaseHaut =
+					&(this->tabLevel[this->mario.getHaut() - 1][this->mario.getY()]);
+
+			if (CaseHaut->getEtat() == FOND || CaseHaut->getEtat() == PIECE) {
+				if (CaseHaut->getEtat() == PIECE)
 					this->incrementerPiece();
 				this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseFond();
 				this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseFond();
@@ -114,6 +113,7 @@ void PlateauSextantBros::sauter() {
 				this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseMario();
 				this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
 				this->rafraichir();
+
 
 				char c = clavier->getChar();
 
@@ -128,6 +128,8 @@ void PlateauSextantBros::sauter() {
 				}
 			} else {
 				i = 5;
+				if (CaseHaut->getEtat() == BOITEPIECE || CaseHaut->getEtat() == BOITECHAMPI)
+					casserBoite(CaseHaut);
 			}
 			i++;
 		}
@@ -136,6 +138,25 @@ void PlateauSextantBros::sauter() {
 	//Descendre
 	this->tomber();
 
+}
+
+void PlateauSextantBros::casserBoite(Case *laCase){
+	if (laCase->getEtat() == BOITEPIECE){
+		this->incrementerPiece(10);
+	}
+	/*
+	else (laCase->getEtat() == BOITECHAMPI){
+		this->mario->grandir();
+	}
+	*/
+	laCase->setCaseBord();
+	if (this->tabLevel[this->mario.getHaut() - 1][this->mario.getY() - 1].getEtat() == BOITEPIECE
+			|| this->tabLevel[this->mario.getHaut() - 1][this->mario.getY() - 1].getEtat() == BOITECHAMPI )
+				this->tabLevel[this->mario.getHaut() - 1][this->mario.getY() - 1].setCaseBord();
+			else
+				this->tabLevel[this->mario.getHaut() - 1][this->mario.getY() + 1].setCaseBord();
+
+	this->rafraichir();
 }
 
 void PlateauSextantBros::tomber() {
@@ -154,7 +175,7 @@ void PlateauSextantBros::tomber() {
 		break;
 
 	case TROU:
-		// Faire perdre une vie !
+		this->perdreVie();
 		break;
 	default:
 		break;
@@ -743,11 +764,20 @@ void PlateauSextantBros::genererLigne(int posX, int posY, int t, int type) {
 
 void PlateauSextantBros::incrementerPiece() {
 	this->score += 10;
-	if (this->pieces != 99)
-		this->pieces++;
-	else {
-		this->pieces = 0;
+	this->pieces++;
+	if (this->pieces >= 100){
+		this->pieces -= 100 ;
 		this->vie++;
+	}
+}
+
+void PlateauSextantBros::incrementerPiece(int nbPieces) {
+	this->score += nbPieces*10;
+	this->pieces += nbPieces;
+
+	if (this->pieces >= 100){
+		this->pieces -= 100;
+		this->vie ++;
 	}
 }
 
@@ -760,4 +790,22 @@ void PlateauSextantBros::initBandeau() {
 	this->ecran->afficherBase(this->pieces, 10, BLANC);
 	this->ecran->afficherMot(0, 44, "Temps : ", BLANC);
 	this->ecran->afficherBase(this->vie, 10, BLANC);
+}
+
+void PlateauSextantBros::perdreVie(){
+	this->vie --;
+	if (this->vie <= 0)
+		this->perdu();
+	else
+	{
+		this->mario.setBas(23);
+		this->mario.setHaut(22);
+		this->mario.setY(5);
+		this->level();
+		this->rafraichir();
+	}
+}
+
+void PlateauSextantBros::perdu(){
+	this->ecran->effacerEcranV(NOIR);
 }
