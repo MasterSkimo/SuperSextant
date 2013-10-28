@@ -21,6 +21,7 @@ public :
 	EcranV *ecran;
 	ClavierV *clavier;
 	int score;
+	int pieces;
 	int vie;
 	int timer;
 	Case* tab[HAUTEUR][LARGEUR];
@@ -45,6 +46,7 @@ public :
 	void introduction();
 	void level();
 	void rafraichir();
+	void incrementerPiece();
 };
 
 

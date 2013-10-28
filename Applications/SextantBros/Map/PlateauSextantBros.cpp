@@ -37,8 +37,17 @@ void PlateauSextantBros::bougerMario(char fleche) {
 }
 
 void PlateauSextantBros::bougerDroite(bool saut) {
-	if (this->tabLevel[this->mario.getHaut()][this->mario.getY() + 1].getEtat() == FOND
-	&& this->tabLevel[this->mario.getBas()][this->mario.getY() + 1].getEtat() == FOND) {
+	int etatHaut = this->tabLevel[this->mario.getHaut()][this->mario.getY() + 1].getEtat();
+	int etatBas = this->tabLevel[this->mario.getBas()][this->mario.getY() + 1].getEtat();
+
+	if ((etatHaut == FOND || etatHaut == PIECE)
+	&&  (etatBas== FOND || etatBas==PIECE) ) {
+
+		// Incrémentation Piece
+		if (etatHaut== PIECE)
+			this->incrementerPiece();
+		if (etatBas== PIECE)
+			this->incrementerPiece();
 
 		// Effacer
 		this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseFond();
@@ -49,6 +58,8 @@ void PlateauSextantBros::bougerDroite(bool saut) {
 		this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseMario();
 		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
 
+
+
 		this->rafraichir();
 
 	}
@@ -58,8 +69,11 @@ void PlateauSextantBros::bougerDroite(bool saut) {
 }
 
 void PlateauSextantBros::bougerGauche(bool saut) {
-	if (this->tabLevel[this->mario.getHaut()][this->mario.getY() - 1].getEtat() == FOND
-	&& this->tabLevel[this->mario.getBas()][this->mario.getY() - 1].getEtat() == FOND) {
+	int etatHaut = this->tabLevel[this->mario.getHaut()][this->mario.getY() - 1].getEtat();
+		int etatBas = this->tabLevel[this->mario.getBas()][this->mario.getY() - 1].getEtat();
+
+		if ((etatHaut == FOND || etatHaut == PIECE)
+		&&  (etatBas== FOND || etatBas==PIECE) ) {
 
 		// Effacer
 		this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseFond();
@@ -80,10 +94,14 @@ void PlateauSextantBros::bougerGauche(bool saut) {
 
 void PlateauSextantBros::sauter() {
 	int i = 0;
-//Monter
-	if (this->tabLevel[this->mario.getBas() + 1][this->mario.getY()].getEtat() != FOND) {
+	int etatCaseBas = this->tabLevel[this->mario.getBas() + 1][this->mario.getY()].getEtat();
+	//Monter
+	if (etatCaseBas != FOND && etatCaseBas != PIECE ) {
 		while (i < 4) {
-			if (this->tabLevel[this->mario.getHaut() - 1][this->mario.getY()].getEtat() == FOND) {
+			int etatCaseHaut = this->tabLevel[this->mario.getHaut() - 1][this->mario.getY()].getEtat();
+			if (etatCaseHaut == FOND || etatCaseHaut == PIECE ) {
+				if (etatCaseHaut == PIECE)
+					this->incrementerPiece();
 				this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseFond();
 				this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseFond();
 				this->mario.setHaut(this->mario.getHaut() - 1);
@@ -117,6 +135,7 @@ void PlateauSextantBros::sauter() {
 
 void PlateauSextantBros::tomber() {
 	switch (this->tabLevel[this->mario.getBas() + 1][this->mario.getY()].getEtat()) {
+	case PIECE : this->incrementerPiece();
 	case FOND:
 		this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseFond();
 		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseFond();
@@ -127,6 +146,7 @@ void PlateauSextantBros::tomber() {
 		this->rafraichir();
 
 		break;
+
 	case TROU:
 		// Faire perdre une vie !
 		break;
@@ -650,3 +670,12 @@ void PlateauSextantBros::genererLigne(int posX, int posY, int t){
 	}
 }
 
+void PlateauSextantBros::incrementerPiece(){
+	this->score += 10;
+	if (this->pieces != 99)
+		this->pieces ++;
+	else {
+		this->pieces = 0;
+		this->vie ++;
+	}
+}
