@@ -12,6 +12,7 @@ PlateauSextantBros::PlateauSextantBros(EcranV *e, ClavierV *c) {
 	this->ecran = e;
 	this->clavier = c;
 	this->score = 0;
+	this->pieces=0;
 	this->vie = 3;
 	this->niveauTermine = false;
 	this->timer = 500;
@@ -37,16 +38,18 @@ void PlateauSextantBros::bougerMario(char fleche) {
 }
 
 void PlateauSextantBros::bougerDroite(bool saut) {
-	int etatHaut = this->tabLevel[this->mario.getHaut()][this->mario.getY() + 1].getEtat();
-	int etatBas = this->tabLevel[this->mario.getBas()][this->mario.getY() + 1].getEtat();
+	int etatHaut =
+			this->tabLevel[this->mario.getHaut()][this->mario.getY() + 1].getEtat();
+	int etatBas =
+			this->tabLevel[this->mario.getBas()][this->mario.getY() + 1].getEtat();
 
 	if ((etatHaut == FOND || etatHaut == PIECE)
-	&&  (etatBas== FOND || etatBas==PIECE) ) {
+			&& (etatBas == FOND || etatBas == PIECE)) {
 
 		// Incrémentation Piece
-		if (etatHaut== PIECE)
+		if (etatHaut == PIECE)
 			this->incrementerPiece();
-		if (etatBas== PIECE)
+		if (etatBas == PIECE)
 			this->incrementerPiece();
 
 		// Effacer
@@ -58,8 +61,6 @@ void PlateauSextantBros::bougerDroite(bool saut) {
 		this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseMario();
 		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
 
-
-
 		this->rafraichir();
 
 	}
@@ -69,11 +70,13 @@ void PlateauSextantBros::bougerDroite(bool saut) {
 }
 
 void PlateauSextantBros::bougerGauche(bool saut) {
-	int etatHaut = this->tabLevel[this->mario.getHaut()][this->mario.getY() - 1].getEtat();
-		int etatBas = this->tabLevel[this->mario.getBas()][this->mario.getY() - 1].getEtat();
+	int etatHaut =
+			this->tabLevel[this->mario.getHaut()][this->mario.getY() - 1].getEtat();
+	int etatBas =
+			this->tabLevel[this->mario.getBas()][this->mario.getY() - 1].getEtat();
 
-		if ((etatHaut == FOND || etatHaut == PIECE)
-		&&  (etatBas== FOND || etatBas==PIECE) ) {
+	if ((etatHaut == FOND || etatHaut == PIECE)
+			&& (etatBas == FOND || etatBas == PIECE)) {
 
 		// Effacer
 		this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseFond();
@@ -94,12 +97,14 @@ void PlateauSextantBros::bougerGauche(bool saut) {
 
 void PlateauSextantBros::sauter() {
 	int i = 0;
-	int etatCaseBas = this->tabLevel[this->mario.getBas() + 1][this->mario.getY()].getEtat();
+	int etatCaseBas =
+			this->tabLevel[this->mario.getBas() + 1][this->mario.getY()].getEtat();
 	//Monter
-	if (etatCaseBas != FOND && etatCaseBas != PIECE ) {
+	if (etatCaseBas != FOND && etatCaseBas != PIECE) {
 		while (i < 4) {
-			int etatCaseHaut = this->tabLevel[this->mario.getHaut() - 1][this->mario.getY()].getEtat();
-			if (etatCaseHaut == FOND || etatCaseHaut == PIECE ) {
+			int etatCaseHaut =
+					this->tabLevel[this->mario.getHaut() - 1][this->mario.getY()].getEtat();
+			if (etatCaseHaut == FOND || etatCaseHaut == PIECE) {
 				if (etatCaseHaut == PIECE)
 					this->incrementerPiece();
 				this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseFond();
@@ -135,7 +140,8 @@ void PlateauSextantBros::sauter() {
 
 void PlateauSextantBros::tomber() {
 	switch (this->tabLevel[this->mario.getBas() + 1][this->mario.getY()].getEtat()) {
-	case PIECE : this->incrementerPiece();
+	case PIECE:
+		this->incrementerPiece();
 	case FOND:
 		this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseFond();
 		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseFond();
@@ -551,18 +557,18 @@ void PlateauSextantBros::level() {
 	this->genererEscalier(272, 12, 4, false);
 
 	// Ligne
-	this->genererLigne(18,48,4);
-	this->genererLigne(18,54,4);
-	this->genererLigne(14,51,4);
-	this->genererLigne(20,92,5);
-	this->genererLigne(18,98,5);
-	this->genererLigne(16,104,5);
-	this->genererLigne(21,162,5);
-	this->genererLigne(21,171,5);
-	this->genererLigne(21,180,5);
-	this->genererLigne(17,166,6);
-	this->genererLigne(17,175,6);
-	this->genererLigne(13,170,6);
+	this->genererLigne(18, 48, 4);
+	this->genererLigne(18, 54, 4);
+	this->genererLigne(14, 51, 4);
+	this->genererLigne(20, 92, 5);
+	this->genererLigne(18, 98, 5);
+	this->genererLigne(16, 104, 5);
+	this->genererLigne(21, 162, 5);
+	this->genererLigne(21, 171, 5);
+	this->genererLigne(21, 180, 5);
+	this->genererLigne(17, 166, 6);
+	this->genererLigne(17, 175, 6);
+	this->genererLigne(13, 170, 6);
 
 	// Pièces
 	this->tabLevel[22][14].setCasePiece();
@@ -589,6 +595,11 @@ void PlateauSextantBros::level() {
 	this->tabLevel[18][133].setCasePiece();
 	this->tabLevel[17][136].setCasePiece();
 
+	// Bandeau Haut
+	for (int y = 0; y < 300; y++) {
+		this->tabLevel[0][y].setCaseBord();
+	}
+	this->initBandeau();
 
 	//Mario
 	this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
@@ -613,12 +624,12 @@ void PlateauSextantBros::rafraichir() {
 			deb = -41;
 		}
 	}
-	ecran->effacerEcranV(NOIR);
 	for (int x = 0; x < HAUTEUR; x++) {
 		for (int y = 0; y < LARGEUR; y++) {
 			this->tab[x][y]->paint(x, y);
 		}
 	}
+	this->initBandeau();
 }
 
 void PlateauSextantBros::genererTube(int posX, int posY, int h) {
@@ -664,18 +675,29 @@ void PlateauSextantBros::genererEscalier(int posX, int posY, int h,
 	}
 }
 
-void PlateauSextantBros::genererLigne(int posX, int posY, int t){
-	for(int y = posY ; y <= posY+t ; y++){
+void PlateauSextantBros::genererLigne(int posX, int posY, int t) {
+	for (int y = posY; y <= posY + t; y++) {
 		this->tabLevel[posX][y].setCaseBord();
 	}
 }
 
-void PlateauSextantBros::incrementerPiece(){
+void PlateauSextantBros::incrementerPiece() {
 	this->score += 10;
 	if (this->pieces != 99)
-		this->pieces ++;
+		this->pieces++;
 	else {
 		this->pieces = 0;
-		this->vie ++;
+		this->vie++;
 	}
+}
+
+void PlateauSextantBros::initBandeau() {
+	this->ecran->afficherMot(0, 0, "Score : ", BLANC);
+	this->ecran->afficherBase(this->score, 10, BLANC);
+	this->ecran->afficherMot(0, 20, "Vie : ", BLANC);
+	this->ecran->afficherBase(this->vie, 10, BLANC);
+	this->ecran->afficherMot(0, 30, "Pieces : ", BLANC);
+	this->ecran->afficherBase(this->pieces, 10, BLANC);
+	this->ecran->afficherMot(0, 44, "Temps : ", BLANC);
+	this->ecran->afficherBase(this->vie, 10, BLANC);
 }

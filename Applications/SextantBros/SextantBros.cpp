@@ -49,6 +49,7 @@ void SextantBros::run() {
 			this->plateau->tab[x][y]->paint(x,y);
 		}
 	}
+	this->plateau->initBandeau();
 	while (!this->plateau->niveauTermine) {
 		char c = clavier->getChar();
 

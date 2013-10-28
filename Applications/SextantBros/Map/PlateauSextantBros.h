@@ -36,6 +36,9 @@ public :
 	// Constructeur
 	PlateauSextantBros(EcranV *, ClavierV *);
 
+	// Bandeau Haut
+	void initBandeau();
+
 	// Mario
 	void initMario();
 	void bougerMario(char fleche);
