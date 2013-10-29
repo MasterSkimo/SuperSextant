@@ -334,7 +334,7 @@ void EcranV::afficherChiffre(int l, int c, const int valeur) {
 	// ajout du caractère de fin de chaine */
 	resultat[count] = '\0';
 
-	afficherMot(l, c, resultat, BLANC);
+	ecrireMot(l, c, resultat, GRIS_LEGER, NOIR);
 }
 
 void EcranV::afficherChiffre(const int valeur) {

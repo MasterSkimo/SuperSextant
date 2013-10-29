@@ -45,6 +45,8 @@ void PlateauSextantBros::bougerDroite(bool saut) {
 
 	if (etatHaut == DRAPEAU || etatHaut == CHATEAU || etatBas == DRAPEAU
 			|| etatBas == CHATEAU) {
+		int scoreDrapeau = (this->mario.getBas() - HAUTEUR)* -10;
+		this->score += scoreDrapeau;
 		niveauTermine = true;
 		return;
 	}
@@ -907,7 +909,7 @@ void PlateauSextantBros::perdreVie() {
 	else {
 		this->mario.setBas(23);
 		this->mario.setHaut(23);
-		this->mario.setY(200);
+		this->mario.setY(5);
 		this->horloge->setTemps(300);
 		this->level();
 		this->rafraichir(true);
@@ -1024,88 +1026,90 @@ void PlateauSextantBros::victory() {
 	}
 
 	// B
-	this->tabIntro[11][47].setCaseBord();
-	this->tabIntro[12][47].setCaseBord();
-	this->tabIntro[13][47].setCaseBord();
-	this->tabIntro[14][47].setCaseBord();
-	this->tabIntro[15][47].setCaseBord();
-	this->tabIntro[11][48].setCaseBord();
-	this->tabIntro[13][48].setCaseBord();
-	this->tabIntro[15][48].setCaseBord();
-	this->tabIntro[11][49].setCaseBord();
-	this->tabIntro[12][49].setCaseBord();
-	this->tabIntro[13][49].setCaseBord();
-	this->tabIntro[15][49].setCaseBord();
-	this->tabIntro[13][50].setCaseBord();
-	this->tabIntro[14][50].setCaseBord();
-	this->tabIntro[15][50].setCaseBord();
+	this->tabIntro[6][47].setCaseBord();
+	this->tabIntro[7][47].setCaseBord();
+	this->tabIntro[8][47].setCaseBord();
+	this->tabIntro[9][47].setCaseBord();
+	this->tabIntro[10][47].setCaseBord();
+	this->tabIntro[6][48].setCaseBord();
+	this->tabIntro[8][48].setCaseBord();
+	this->tabIntro[10][48].setCaseBord();
+	this->tabIntro[6][49].setCaseBord();
+	this->tabIntro[7][49].setCaseBord();
+	this->tabIntro[8][49].setCaseBord();
+	this->tabIntro[10][49].setCaseBord();
+	this->tabIntro[8][50].setCaseBord();
+	this->tabIntro[9][50].setCaseBord();
+	this->tabIntro[10][50].setCaseBord();
 
 	// R
-	this->tabIntro[11][52].setCaseBord();
-	this->tabIntro[12][52].setCaseBord();
-	this->tabIntro[13][52].setCaseBord();
-	this->tabIntro[14][52].setCaseBord();
-	this->tabIntro[15][52].setCaseBord();
-	this->tabIntro[11][53].setCaseBord();
-	this->tabIntro[13][53].setCaseBord();
-	this->tabIntro[11][54].setCaseBord();
-	this->tabIntro[13][54].setCaseBord();
-	this->tabIntro[11][55].setCaseBord();
-	this->tabIntro[13][55].setCaseBord();
-	this->tabIntro[14][55].setCaseBord();
-	this->tabIntro[11][56].setCaseBord();
-	this->tabIntro[12][56].setCaseBord();
-	this->tabIntro[13][56].setCaseBord();
-	this->tabIntro[15][56].setCaseBord();
+	this->tabIntro[6][52].setCaseBord();
+	this->tabIntro[7][52].setCaseBord();
+	this->tabIntro[8][52].setCaseBord();
+	this->tabIntro[9][52].setCaseBord();
+	this->tabIntro[10][52].setCaseBord();
+	this->tabIntro[6][53].setCaseBord();
+	this->tabIntro[8][53].setCaseBord();
+	this->tabIntro[6][54].setCaseBord();
+	this->tabIntro[8][54].setCaseBord();
+	this->tabIntro[6][55].setCaseBord();
+	this->tabIntro[8][55].setCaseBord();
+	this->tabIntro[9][55].setCaseBord();
+	this->tabIntro[6][56].setCaseBord();
+	this->tabIntro[7][56].setCaseBord();
+	this->tabIntro[8][56].setCaseBord();
+	this->tabIntro[10][56].setCaseBord();
 
 	// A
-	this->tabIntro[11][58].setCaseBord();
-	this->tabIntro[12][58].setCaseBord();
-	this->tabIntro[13][58].setCaseBord();
-	this->tabIntro[14][58].setCaseBord();
-	this->tabIntro[15][58].setCaseBord();
-	this->tabIntro[11][59].setCaseBord();
-	this->tabIntro[13][59].setCaseBord();
-	this->tabIntro[11][60].setCaseBord();
-	this->tabIntro[13][60].setCaseBord();
-	this->tabIntro[11][61].setCaseBord();
-	this->tabIntro[12][61].setCaseBord();
-	this->tabIntro[13][61].setCaseBord();
-	this->tabIntro[14][61].setCaseBord();
-	this->tabIntro[15][61].setCaseBord();
+	this->tabIntro[6][58].setCaseBord();
+	this->tabIntro[7][58].setCaseBord();
+	this->tabIntro[8][58].setCaseBord();
+	this->tabIntro[9][58].setCaseBord();
+	this->tabIntro[10][58].setCaseBord();
+	this->tabIntro[6][59].setCaseBord();
+	this->tabIntro[8][59].setCaseBord();
+	this->tabIntro[6][60].setCaseBord();
+	this->tabIntro[8][60].setCaseBord();
+	this->tabIntro[6][61].setCaseBord();
+	this->tabIntro[7][61].setCaseBord();
+	this->tabIntro[8][61].setCaseBord();
+	this->tabIntro[9][61].setCaseBord();
+	this->tabIntro[10][61].setCaseBord();
 
 	// V
-	this->tabIntro[11][63].setCaseBord();
-	this->tabIntro[12][63].setCaseBord();
-	this->tabIntro[13][64].setCaseBord();
-	this->tabIntro[14][64].setCaseBord();
-	this->tabIntro[15][65].setCaseBord();
-	this->tabIntro[13][66].setCaseBord();
-	this->tabIntro[14][66].setCaseBord();
-	this->tabIntro[11][67].setCaseBord();
-	this->tabIntro[12][67].setCaseBord();
+	this->tabIntro[6][63].setCaseBord();
+	this->tabIntro[7][63].setCaseBord();
+	this->tabIntro[8][64].setCaseBord();
+	this->tabIntro[9][64].setCaseBord();
+	this->tabIntro[10][65].setCaseBord();
+	this->tabIntro[8][66].setCaseBord();
+	this->tabIntro[9][66].setCaseBord();
+	this->tabIntro[6][67].setCaseBord();
+	this->tabIntro[7][67].setCaseBord();
 
 	// O
-	this->tabIntro[11][69].setCaseBord();
-	this->tabIntro[12][69].setCaseBord();
-	this->tabIntro[13][69].setCaseBord();
-	this->tabIntro[14][69].setCaseBord();
-	this->tabIntro[15][69].setCaseBord();
-	this->tabIntro[11][70].setCaseBord();
-	this->tabIntro[15][70].setCaseBord();
-	this->tabIntro[11][71].setCaseBord();
-	this->tabIntro[15][71].setCaseBord();
-	this->tabIntro[11][72].setCaseBord();
-	this->tabIntro[12][72].setCaseBord();
-	this->tabIntro[13][72].setCaseBord();
-	this->tabIntro[14][72].setCaseBord();
-	this->tabIntro[15][72].setCaseBord();
+	this->tabIntro[6][69].setCaseBord();
+	this->tabIntro[7][69].setCaseBord();
+	this->tabIntro[8][69].setCaseBord();
+	this->tabIntro[9][69].setCaseBord();
+	this->tabIntro[10][69].setCaseBord();
+	this->tabIntro[6][70].setCaseBord();
+	this->tabIntro[10][70].setCaseBord();
+	this->tabIntro[6][71].setCaseBord();
+	this->tabIntro[10][71].setCaseBord();
+	this->tabIntro[6][72].setCaseBord();
+	this->tabIntro[7][72].setCaseBord();
+	this->tabIntro[8][72].setCaseBord();
+	this->tabIntro[9][72].setCaseBord();
+	this->tabIntro[10][72].setCaseBord();
 
 	// !
-	this->tabIntro[11][75].setCaseBord();
-	this->tabIntro[12][75].setCaseBord();
-	this->tabIntro[13][75].setCaseBord();
-	this->tabIntro[15][75].setCaseBord();
+	this->tabIntro[6][75].setCaseBord();
+	this->tabIntro[7][75].setCaseBord();
+	this->tabIntro[8][75].setCaseBord();
+	this->tabIntro[10][75].setCaseBord();
+
+
 
 	for (int x = 0; x < HAUTEUR; x++) {
 		for (int y = 0; y < LARGEUR; y++) {
@@ -1114,6 +1118,10 @@ void PlateauSextantBros::victory() {
 		}
 	}
 
+
+	// score :
+	this->ecran->ecrireMot(16,47,"SCORE", GRIS_LEGER, NOIR);
+	this->ecran->afficherChiffre(16,53,this->score);
 	this->marioAscii();
 
 }

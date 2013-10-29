@@ -23,6 +23,12 @@ void Gumpa::bouger() {
 		this->isAlive = false;
 		this->plateauBros->perdreRetrecir();
 	}
+	//Fake Mario tuage de goomba
+	else if (this->plateauBros->tabLevel[positionX-1][positionY].getEtat() == MARIO){
+		this->plateauBros->tabLevel[positionX][positionY].setCaseFond();
+		this->plateauBros->score+=500;
+		this->isAlive = false;
+	}
 	// Sinon déplacement
 	else {
 		this->plateauBros->tabLevel[positionX][positionY].setCaseFond();
