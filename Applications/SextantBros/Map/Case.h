@@ -13,11 +13,11 @@
 
 class Case {
 	/**
-	 * ��cran pour l'affichage de la case
+	 * ������cran pour l'affichage de la case
 	 */
 	EcranV* ecran;
 	/**
-	 * coordonn��es de la case dans la grille.
+	 * coordonn������es de la case dans la grille.
 	 */
     int x, y ;
     /**
@@ -30,11 +30,11 @@ class Case {
      */
     Couleur couleurPr();
     /**
-     * Couleur de l'arri��re plan de la case.
+     * Couleur de l'arri������re plan de la case.
      */
     Couleur couleurAr();
     /**
-     * Caract��re de la case.
+     * Caract������re de la case.
      */
     char Caractere();
 
@@ -48,8 +48,8 @@ class Case {
 #define BOITECHAMPI			70
 #define BOITEPIECE			80
 #define PIECE				90
-#define CHATEAU             100
-#define DRAPEAU             110
+#define CHATEAU				100
+#define DRAPEAU				110
 
 public:
     int etat;
@@ -71,11 +71,11 @@ public:
     EcranV* getEcran();
     int getEtat();
     /**
-     * Permet de conna��tre le nombre de balles perdues pendant le jeu.
+     * Permet de conna������tre le nombre de balles perdues pendant le jeu.
      */
     int nbBallePerdue(int);
     /**
-     * d��finit la case x,y comme une case vide.
+     * d������finit la case x,y comme une case vide.
      */
     void init(int x, int y);
 

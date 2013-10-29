@@ -2,7 +2,7 @@
 
 /**
  * @file Case.cpp
- * Impl��mentation des m��thodes de la classes Case.
+ * Impl������mentation des m������thodes de la classes Case.
  */
 
 void Case::init(int xx, int yy) {
@@ -27,7 +27,7 @@ EcranV* Case::getEcran() {
 
 
 /*
- * Changement d'état des blocs
+ * Changement d'��tat des blocs
  */
 void Case::setCaseFond() {
 	etat = FOND;
@@ -74,7 +74,8 @@ void Case::setCaseChateau() {
 };
 
 void Case::setCaseDrapeau() {
-        etat = DRAPEAU;
+	etat = DRAPEAU;
+
 };
 
 void Case::paint(int posX, int posY) {
@@ -104,10 +105,10 @@ Couleur Case::couleurPr() {
 			return MARRON;
 		case PIECE:
 			return JAUNE;
-        case CHATEAU:
-                return ROUGE;
-        case DRAPEAU:
-                return VERT;
+		case CHATEAU:
+			return ROUGE;
+		case DRAPEAU:
+			return VERT;
 		default:
 			return GRIS_LEGER;
 	}
@@ -135,10 +136,10 @@ Couleur Case::couleurAr() {
 			return MARRON;
 		case PIECE:
 			return GRIS_LEGER;
-        case CHATEAU:
-                return ROUGE;
-        case DRAPEAU:
-                return VERT;
+		case CHATEAU:
+			return ROUGE;
+		case DRAPEAU:
+			return VERT;
 		default:
 			return GRIS_LEGER;
 	}
