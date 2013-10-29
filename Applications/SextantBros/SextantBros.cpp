@@ -26,6 +26,12 @@ void SextantBros::launch() {
 	this->horloge = new HorlogeBros(this->ecran);
 	this->plateau = new PlateauSextantBros(this->ecran, this->clavier,
 			this->horloge);
+	this->tabGumpa[0] = new Gumpa(21, 29, 23, plateau);
+	this->tabGumpa[1] = new Gumpa(50, 60, 23, plateau);
+	this->tabGumpa[2] = new Gumpa(100, 110, 23, plateau);
+	this->tabGumpa[3] = new Gumpa(140, 150, 23, plateau);
+	this->tabGumpa[4] = new Gumpa(190, 200, 23, plateau);
+	this->tabGumpa[5] = new Gumpa(230, 237, 23, plateau);
 }
 
 void SextantBros::run() {
@@ -45,7 +51,14 @@ void SextantBros::run() {
 				this->plateau->tab[x][y]->paint(x, y);
 			}
 		}
+		this->tabGumpa[0]->start("Gumpa0");
+		this->tabGumpa[1]->start("Gumpa1");
+		this->tabGumpa[2]->start("Gumpa2");
+		this->tabGumpa[3]->start("Gumpa3");
+		this->tabGumpa[4]->start("Gumpa4");
+		this->tabGumpa[5]->start("Gumpa5");
 		this->plateau->initBandeau();
+
 		while (!this->plateau->niveauTermine) {
 			char c = clavier->getChar();
 

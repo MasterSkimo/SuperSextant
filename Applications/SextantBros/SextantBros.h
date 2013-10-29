@@ -15,12 +15,14 @@
 
 #include "config.h"
 #include <sextant/Activite/Threads.h>
+#include "Personnage/Gumpa.h"
 
 class SextantBros : public Threads {
 	PlateauSextantBros *plateau;
 	ClavierV *clavier;
 	EcranV *ecran;
 	HorlogeBros *horloge;
+	Gumpa *tabGumpa[6];
 public:
 	SextantBros();
 	SextantBros(EcranV *e, ClavierV *c, PlateauSextantBros *p );

@@ -796,11 +796,11 @@ void PlateauSextantBros::initBandeau() {
 void PlateauSextantBros::perdreVie() {
 	this->vie--;
 	if (this->vie <= 0)
-		this->perdu();
+		this->niveauTermine = true;
 	else {
 		this->mario.setBas(23);
 		this->mario.setHaut(23);
-		this->mario.setY(5);
+		this->mario.setY(200);
 		this->horloge->setTemps(300);
 		this->level();
 		this->rafraichir();

@@ -9,13 +9,16 @@
 #define GUMPA_H_
 
 #include <sextant/Activite/Threads.h>
+#include "../Map/PlateauSextantBros.h"
 
 class Gumpa : public Threads{
+	PlateauSextantBros *plateauBros;
 
-	int borneInf, borneSup, position, direction;
+	int borneInf, borneSup, positionX, positionY, direction;
+	bool isAlive;
 public:
 	Gumpa();
-	Gumpa(int inf, int sup, int position);
+	Gumpa(int inf, int sup, int position, PlateauSextantBros *);
 
 	void bouger();
 	void changerDirection();

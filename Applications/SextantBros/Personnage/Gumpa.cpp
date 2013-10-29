@@ -1,33 +1,26 @@
-/*
- * Gumpa.cpp
- *
- *  Created on: 24 oct. 2013
- *      Author: Gwenaël
- */
-
 #include <Applications/SextantBros/Personnage/Gumpa.h>
 
-Gumpa::Gumpa(){
-
-}
-
-Gumpa::Gumpa(int inf, int sup, int pos) {
+Gumpa::Gumpa(int inf, int sup, int posX, PlateauSextantBros* tableau) {
 	// TODO Auto-generated constructor stub
 	borneInf = inf;
 	borneSup = sup;
-	position = pos;
+	positionX = posX;
+	positionY = borneInf;
 	direction = 1;
-
+	isAlive = true;
+	plateauBros = tableau;
 }
 
 void Gumpa::bouger() {
 	// Gestion de la direction
-	if (position <= borneInf || position >= borneSup)
+	if (positionY <= borneInf || positionY >= borneSup)
 		changerDirection();
 
 	// Gestion du déplacement
-	position += direction;
-
+	this->plateauBros->tabLevel[positionX][positionY].setCaseFond();
+	positionY += direction;
+	this->plateauBros->tabLevel[positionX][positionY].setCaseGumba();
+	this->plateauBros->rafraichir();
 }
 
 
@@ -36,12 +29,10 @@ void Gumpa::changerDirection() {
 }
 
 void Gumpa::detruire(){
-	this->Exit();
-	//~Gumpa();
+	isAlive = false;
 }
 void Gumpa::run() {
-	while(1)
+	while(isAlive){
 		bouger();
+	}
 }
-
-
