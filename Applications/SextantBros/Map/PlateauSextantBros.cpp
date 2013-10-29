@@ -43,10 +43,15 @@ void PlateauSextantBros::bougerDroite(bool saut) {
 	int etatBas =
 			this->tabLevel[this->mario.getBas()][this->mario.getY() + 1].getEtat();
 
+	if(etatHaut == DRAPEAU || etatHaut == CHATEAU || etatBas == DRAPEAU || etatBas == CHATEAU){
+		niveauTermine = true;
+		return;
+	}
+
 	if ((etatHaut == FOND || etatHaut == PIECE)
 			&& (etatBas == FOND || etatBas == PIECE)) {
 
-		// Incrémentation Piece
+		// Incr??mentation Piece
 		if (etatHaut == PIECE)
 			this->incrementerPiece();
 		if (etatBas == PIECE)
@@ -74,6 +79,11 @@ void PlateauSextantBros::bougerGauche(bool saut) {
 	int etatBas =
 			this->tabLevel[this->mario.getBas()][this->mario.getY() - 1].getEtat();
 
+	if(etatHaut == DRAPEAU || etatHaut == CHATEAU || etatBas == DRAPEAU || etatBas == CHATEAU){
+		niveauTermine = true ;
+		return;
+	}
+
 	if ((etatHaut == FOND || etatHaut == PIECE)
 			&& (etatBas == FOND || etatBas == PIECE)) {
 
@@ -92,6 +102,7 @@ void PlateauSextantBros::bougerGauche(bool saut) {
 		this->tomber();
 	}
 }
+
 
 void PlateauSextantBros::sauter() {
 	int i = 0;
@@ -608,7 +619,7 @@ void PlateauSextantBros::level() {
 	this->genererLigne(24, 251, 2, TROU);
 	this->genererLigne(24, 256, 2, TROU);
 
-	// Pièces
+	// Pi��ces
 	this->tabLevel[22][14].setCasePiece();
 	this->tabLevel[22][16].setCasePiece();
 	this->tabLevel[22][18].setCasePiece();
@@ -664,6 +675,87 @@ void PlateauSextantBros::level() {
 	this->tabLevel[13][269].setCasePiece();
 	this->tabLevel[13][271].setCasePiece();
 	this->tabLevel[13][273].setCasePiece();
+
+	//Fin de niveau : Drapeau
+	this->tabLevel[23][280].setCaseChateau();
+	this->tabLevel[22][280].setCaseChateau();
+	this->tabLevel[21][280].setCaseChateau();
+	this->tabLevel[20][280].setCaseChateau();
+	this->tabLevel[19][280].setCaseChateau();
+	this->tabLevel[18][280].setCaseChateau();
+	this->tabLevel[17][280].setCaseChateau();
+	this->tabLevel[16][280].setCaseChateau();
+	this->tabLevel[15][280].setCaseChateau();
+	this->tabLevel[14][280].setCaseChateau();
+	this->tabLevel[13][280].setCaseChateau();
+	this->tabLevel[12][280].setCaseChateau();
+	this->tabLevel[11][280].setCaseChateau();
+	this->tabLevel[10][280].setCaseChateau();
+	this->tabLevel[9][280].setCaseChateau();
+	this->tabLevel[8][280].setCaseChateau();
+	this->tabLevel[7][280].setCaseChateau();
+	this->tabLevel[6][280].setCaseChateau();
+	this->tabLevel[6][281].setCaseDrapeau();
+	this->tabLevel[6][282].setCaseDrapeau();
+	this->tabLevel[7][281].setCaseDrapeau();
+	this->tabLevel[7][282].setCaseDrapeau();
+	this->tabLevel[7][283].setCaseDrapeau();
+	this->tabLevel[7][284].setCaseDrapeau();
+	this->tabLevel[8][281].setCaseDrapeau();
+	this->tabLevel[8][282].setCaseDrapeau();
+	this->tabLevel[8][283].setCaseDrapeau();
+	this->tabLevel[8][284].setCaseDrapeau();
+	this->tabLevel[8][285].setCaseDrapeau();
+	this->tabLevel[8][286].setCaseDrapeau();
+	this->tabLevel[9][281].setCaseDrapeau();
+	this->tabLevel[9][282].setCaseDrapeau();
+	this->tabLevel[9][283].setCaseDrapeau();
+	this->tabLevel[9][284].setCaseDrapeau();
+	this->tabLevel[10][282].setCaseDrapeau();
+	this->tabLevel[10][281].setCaseDrapeau();
+
+	//Fin de niveau : Drapeau
+	this->tabLevel[23][284].setCaseChateau();
+	this->tabLevel[22][284].setCaseChateau();
+	this->tabLevel[21][284].setCaseChateau();
+	this->tabLevel[20][284].setCaseChateau();
+	this->tabLevel[19][284].setCaseChateau();
+	this->tabLevel[18][284].setCaseChateau();
+	this->tabLevel[17][284].setCaseChateau();
+
+	this->tabLevel[17][284].setCaseChateau();
+	this->tabLevel[17][285].setCaseChateau();
+	this->tabLevel[17][286].setCaseChateau();
+	this->tabLevel[17][287].setCaseChateau();
+	this->tabLevel[17][288].setCaseChateau();
+	this->tabLevel[17][289].setCaseChateau();
+	this->tabLevel[17][290].setCaseChateau();
+	this->tabLevel[17][291].setCaseChateau();
+	this->tabLevel[17][292].setCaseChateau();
+	this->tabLevel[17][293].setCaseChateau();
+	this->tabLevel[17][294].setCaseChateau();
+	this->tabLevel[17][295].setCaseChateau();
+	this->tabLevel[17][296].setCaseChateau();
+
+	this->tabLevel[23][296].setCaseChateau();
+	this->tabLevel[22][296].setCaseChateau();
+	this->tabLevel[21][296].setCaseChateau();
+	this->tabLevel[20][296].setCaseChateau();
+	this->tabLevel[19][296].setCaseChateau();
+	this->tabLevel[18][296].setCaseChateau();
+	this->tabLevel[17][296].setCaseChateau();
+
+	this->tabLevel[16][285].setCaseChateau();
+	this->tabLevel[16][286].setCaseChateau();
+	this->tabLevel[15][287].setCaseChateau();
+	this->tabLevel[15][288].setCaseChateau();
+	this->tabLevel[14][289].setCaseChateau();
+	this->tabLevel[14][290].setCaseChateau();
+	this->tabLevel[14][291].setCaseChateau();
+	this->tabLevel[15][292].setCaseChateau();
+	this->tabLevel[15][293].setCaseChateau();
+	this->tabLevel[16][294].setCaseChateau();
+	this->tabLevel[16][295].setCaseChateau();
 
 	// Bandeau Haut
 	for (int y = 0; y < 300; y++) {
