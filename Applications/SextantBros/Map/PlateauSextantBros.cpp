@@ -61,7 +61,7 @@ void PlateauSextantBros::bougerDroite(bool saut) {
 		this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseMario();
 		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
 
-		this->rafraichir();
+		this->rafraichir(true);
 	}
 	if (!saut) {
 		this->tomber();
@@ -86,7 +86,7 @@ void PlateauSextantBros::bougerGauche(bool saut) {
 		this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseMario();
 		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
 
-		this->rafraichir();
+		this->rafraichir(true);
 	}
 	if (!saut) {
 		this->tomber();
@@ -112,7 +112,7 @@ void PlateauSextantBros::sauter() {
 				this->mario.setBas(this->mario.getBas() - 1);
 				this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseMario();
 				this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
-				this->rafraichir();
+				this->rafraichir(true);
 
 				char c = clavier->getChar();
 
@@ -157,7 +157,7 @@ void PlateauSextantBros::casserBoite(Case *laCase) {
 	else
 		this->tabLevel[this->mario.getHaut() - 1][this->mario.getY() + 1].setCaseBord();
 
-	this->rafraichir();
+	this->rafraichir(true);
 }
 
 void PlateauSextantBros::tomber() {
@@ -171,7 +171,7 @@ void PlateauSextantBros::tomber() {
 		this->mario.setBas(this->mario.getBas() + 1);
 		this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseMario();
 		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
-		this->rafraichir();
+		this->rafraichir(true);
 
 		break;
 
@@ -682,13 +682,17 @@ void PlateauSextantBros::level() {
 	}
 }
 
-void PlateauSextantBros::rafraichir() {
+void PlateauSextantBros::rafraichir(bool tout) {
 	if (this->horloge->getTemps() <= 0)
 		this->perdreVie();
 	else {
+		int x = 1;
+		if (tout) {
+			x = 0;
+		}
 		if (this->mario.getY() > 40 && this->mario.getY() < 261) {
 			int deb = -41;
-			for (int x = 0; x < HAUTEUR; x++) {
+			for (x; x < HAUTEUR; x++) {
 				for (int y = 0; y < LARGEUR; y++) {
 					this->tab[x][y] = &(this->tabLevel[x][this->mario.getY()
 							+ deb]);
@@ -697,12 +701,19 @@ void PlateauSextantBros::rafraichir() {
 				deb = -41;
 			}
 		}
-		for (int x = 0; x < HAUTEUR; x++) {
+		x = 1;
+		if (tout) {
+			x = 0;
+		}
+
+		for (x; x < HAUTEUR; x++) {
 			for (int y = 0; y < LARGEUR; y++) {
 				this->tab[x][y]->paint(x, y);
 			}
 		}
-		this->initBandeau();
+		if (tout) {
+			this->initBandeau();
+		}
 	}
 }
 
@@ -803,7 +814,7 @@ void PlateauSextantBros::perdreVie() {
 		this->mario.setY(200);
 		this->horloge->setTemps(300);
 		this->level();
-		this->rafraichir();
+		this->rafraichir(true);
 	}
 }
 

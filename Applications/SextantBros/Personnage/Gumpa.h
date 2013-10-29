@@ -18,7 +18,7 @@ class Gumpa : public Threads{
 	bool isAlive;
 public:
 	Gumpa();
-	Gumpa(int inf, int sup, int position, PlateauSextantBros *);
+	Gumpa(int inf, int sup, int positionX, PlateauSextantBros *);
 
 	void bouger();
 	void changerDirection();

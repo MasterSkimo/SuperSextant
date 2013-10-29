@@ -6,21 +6,21 @@ Gumpa::Gumpa(int inf, int sup, int posX, PlateauSextantBros* tableau) {
 	borneSup = sup;
 	positionX = posX;
 	positionY = borneInf;
-	direction = 1;
+	direction = -1;
 	isAlive = true;
 	plateauBros = tableau;
 }
 
 void Gumpa::bouger() {
 	// Gestion de la direction
-	if (positionY <= borneInf || positionY >= borneSup)
+	if (positionY < borneInf || positionY > borneSup)
 		changerDirection();
 
 	// Gestion du déplacement
 	this->plateauBros->tabLevel[positionX][positionY].setCaseFond();
 	positionY += direction;
 	this->plateauBros->tabLevel[positionX][positionY].setCaseGumba();
-	this->plateauBros->rafraichir();
+	this->plateauBros->rafraichir(false);
 }
 
 
