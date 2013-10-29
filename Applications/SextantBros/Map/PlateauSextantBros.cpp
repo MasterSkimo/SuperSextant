@@ -495,7 +495,7 @@ void PlateauSextantBros::introduction() {
 	for (int x = 0; x < HAUTEUR; x++) {
 		for (int y = 0; y < LARGEUR; y++) {
 			this->tab[x][y] = &(this->tabIntro[x][y]);
-			this->tab[x][y]->paint(x,y);
+			this->tab[x][y]->paint(x, y);
 		}
 	}
 }

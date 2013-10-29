@@ -24,42 +24,49 @@ SextantBros::~SextantBros() {
 
 void SextantBros::launch() {
 	this->horloge = new HorlogeBros(this->ecran);
-	this->plateau = new PlateauSextantBros(this->ecran, this->clavier, this->horloge);
+	this->plateau = new PlateauSextantBros(this->ecran, this->clavier,
+			this->horloge);
 }
 
 void SextantBros::run() {
-	ecran->effacerEcranV(NOIR);
-	this->launch();
+	while (1) {
+		ecran->effacerEcranV(NOIR);
+		this->launch();
 
-	// Introduction
-	this->plateau->perdu();
-	this->plateau->introduction();
-	this->clavier->getChar();
+		// Introduction
+		this->plateau->introduction();
+		this->clavier->getChar();
 
-	// Lancement du niveau
-	this->plateau->level();
-	this->horloge->start("Horloge");
-	for (int x = 0; x < HAUTEUR; x++) {
-		for (int y = 0; y < LARGEUR; y++) {
-			this->plateau->tab[x][y]->paint(x, y);
+		// Lancement du niveau
+		this->plateau->level();
+		this->horloge->start("Horloge");
+		for (int x = 0; x < HAUTEUR; x++) {
+			for (int y = 0; y < LARGEUR; y++) {
+				this->plateau->tab[x][y]->paint(x, y);
+			}
 		}
-	}
-	this->plateau->initBandeau();
-	while (!this->plateau->niveauTermine) {
+		this->plateau->initBandeau();
+		while (!this->plateau->niveauTermine) {
+			char c = clavier->getChar();
+
+			switch (c) {
+			case 'q':
+				this->plateau->bougerGauche(false);
+				break;
+			case 'd':
+				this->plateau->bougerDroite(false);
+				break;
+			case 'z':
+				this->plateau->sauter();
+				break;
+			}
+		}
+		if (this->plateau->niveauTermine && this->plateau->vie > 0) {
+			this->plateau->victory();
+		} else {
+			this->plateau->perdu();
+		}
 		char c = clavier->getChar();
-
-		switch (c) {
-		case 'q':
-			this->plateau->bougerGauche(false);
-			break;
-		case 'd':
-			this->plateau->bougerDroite(false);
-			break;
-		case 'z':
-			this->plateau->sauter();
-			break;
-		}
 	}
-	ecran->effacerEcranV(NOIR);
 }
 
