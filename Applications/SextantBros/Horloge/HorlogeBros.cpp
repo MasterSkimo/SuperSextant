@@ -7,7 +7,7 @@
 
 #include "HorlogeBros.h"
 
-HorlogeBros:: HorlogeBros(){
+HorlogeBros::HorlogeBros() {
 
 }
 
@@ -30,18 +30,32 @@ void HorlogeBros::run() {
 		while (t2 != (t1 + 1)) {
 			t2 = this->timer->getSecondes();
 		}
-		t1=t2;
+		t1 = t2;
 		this->temps--;
-		this->ecran->setLigne(0);
-		this->ecran->setColonne(52);
-		this->ecran->afficherBase(temps,10,BLANC);
+		if (!fin) {
+			this->ecran->setLigne(0);
+			this->ecran->setColonne(52);
+			this->ecran->afficherBase(temps, 10, BLANC);
+		}
 	}
 }
 
-int HorlogeBros::getTemps(){
+int HorlogeBros::getTemps() {
 	return this->temps;
 }
 
-void HorlogeBros::setTemps(int temps){
+void HorlogeBros::setTemps(int temps) {
 	this->temps = temps;
+}
+
+void HorlogeBros::tempoGumba() {
+	int t1 = this->timer->getDsecondes();
+	int t2 = this->timer->getDsecondes();
+	while (t2 < (t1 + 1)) {
+		t2 = this->timer->getDsecondes();
+	}
+}
+
+void HorlogeBros::setFin(bool fin) {
+	this->fin = fin;
 }

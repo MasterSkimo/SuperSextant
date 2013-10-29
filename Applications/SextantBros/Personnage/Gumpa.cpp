@@ -1,6 +1,6 @@
 #include <Applications/SextantBros/Personnage/Gumpa.h>
 
-Gumpa::Gumpa(int inf, int sup, int posX, PlateauSextantBros* tableau) {
+Gumpa::Gumpa(int inf, int sup, int posX, PlateauSextantBros* tableau, HorlogeBros * h) {
 	// TODO Auto-generated constructor stub
 	borneInf = inf;
 	borneSup = sup;
@@ -9,6 +9,7 @@ Gumpa::Gumpa(int inf, int sup, int posX, PlateauSextantBros* tableau) {
 	direction = -1;
 	isAlive = true;
 	plateauBros = tableau;
+	horloge = h;
 }
 
 void Gumpa::bouger() {
@@ -16,23 +17,31 @@ void Gumpa::bouger() {
 	if (positionY < borneInf || positionY > borneSup)
 		changerDirection();
 
-	// Gestion du déplacement
-	this->plateauBros->tabLevel[positionX][positionY].setCaseFond();
-	positionY += direction;
-	this->plateauBros->tabLevel[positionX][positionY].setCaseGumba();
+	// Si Collision
+	if (this->plateauBros->tabLevel[positionX][positionY + direction].getEtat() == MARIO) {
+		this->plateauBros->tabLevel[positionX][positionY].setCaseFond();
+		this->isAlive = false;
+		this->plateauBros->perdreRetrecir();
+	}
+	// Sinon déplacement
+	else {
+		this->plateauBros->tabLevel[positionX][positionY].setCaseFond();
+		positionY += direction;
+		this->plateauBros->tabLevel[positionX][positionY].setCaseGumba();
+	}
 	this->plateauBros->rafraichir(false);
+	horloge->tempoGumba();
 }
-
 
 void Gumpa::changerDirection() {
-	direction = direction *(-1);
+	direction = direction * (-1);
 }
 
-void Gumpa::detruire(){
+void Gumpa::detruire() {
 	isAlive = false;
 }
 void Gumpa::run() {
-	while(isAlive){
+	while (isAlive && !this->plateauBros->niveauTermine) {
 		bouger();
 	}
 }

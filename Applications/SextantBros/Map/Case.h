@@ -48,6 +48,8 @@ class Case {
 #define BOITECHAMPI			70
 #define BOITEPIECE			80
 #define PIECE				90
+#define CHATEAU             100
+#define DRAPEAU             110
 
 public:
     int etat;
@@ -63,6 +65,8 @@ public:
     void setCaseBoiteChampi();
     void setCaseBoitePiece();
     void setCasePiece();
+    void setCaseChateau();
+    void setCaseDrapeau();
     //Accesseurs
     EcranV* getEcran();
     int getEtat();

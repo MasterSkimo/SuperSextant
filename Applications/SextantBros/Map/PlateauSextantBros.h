@@ -33,6 +33,7 @@ public :
 	void genererEscalier(int posX, int posY, int h, bool reverse);
 	void genererLigne(int posX, int posY, int t, int type);
 	void genererColonne(int posX, int posY, int t);
+	void perdreRetrecir();
 
 	// Constructeur
 	PlateauSextantBros(EcranV *, ClavierV *, HorlogeBros *);

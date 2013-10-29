@@ -69,6 +69,14 @@ void Case::setCasePiece() {
 	etat = PIECE;
 };
 
+void Case::setCaseChateau() {
+        etat = CHATEAU;
+};
+
+void Case::setCaseDrapeau() {
+        etat = DRAPEAU;
+};
+
 void Case::paint(int posX, int posY) {
 	ecran->afficherCaractere(posX,posY, couleurPr(), couleurAr(), Caractere());
 }
@@ -96,6 +104,10 @@ Couleur Case::couleurPr() {
 			return MARRON;
 		case PIECE:
 			return JAUNE;
+        case CHATEAU:
+                return ROUGE;
+        case DRAPEAU:
+                return VERT;
 		default:
 			return GRIS_LEGER;
 	}
@@ -110,7 +122,7 @@ Couleur Case::couleurAr() {
 		case TROU:
 			return GRIS_LEGER;
 		case GUMBA:
-			return MARRON;
+			return GRIS_LEGER;
 		case MARIO:
 			return ROUGE;
 		case PORTAIL:
@@ -123,6 +135,10 @@ Couleur Case::couleurAr() {
 			return MARRON;
 		case PIECE:
 			return GRIS_LEGER;
+        case CHATEAU:
+                return ROUGE;
+        case DRAPEAU:
+                return VERT;
 		default:
 			return GRIS_LEGER;
 	}

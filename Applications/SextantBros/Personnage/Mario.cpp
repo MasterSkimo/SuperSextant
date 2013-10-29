@@ -46,5 +46,5 @@ void Mario::grandir(){
 }
 
 void Mario::retrecir(){
-	this->bas --;
+	this->haut ++;
 }

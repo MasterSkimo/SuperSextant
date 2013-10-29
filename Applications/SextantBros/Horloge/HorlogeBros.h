@@ -24,6 +24,9 @@ public:
 	void run();
 	int getTemps();
 	void setTemps(int temps);
+	void tempoGumba();
+	void setFin(bool);
+
 
 };
 
