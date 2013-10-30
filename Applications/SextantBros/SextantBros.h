@@ -23,12 +23,14 @@ class SextantBros : public Threads {
 	EcranV *ecran;
 	HorlogeBros *horloge;
 	Gumpa *tabGumpa[6];
+	int scoreVie, scoreTemps, scoreDrapeau, scoreBonus;
 public:
 	SextantBros();
 	SextantBros(EcranV *e, ClavierV *c, PlateauSextantBros *p );
 	virtual ~SextantBros();
 	void run();
 	void launch();
+	void calculPoint();
 };
 
 #endif /* SEXTANTBROS_H_ */

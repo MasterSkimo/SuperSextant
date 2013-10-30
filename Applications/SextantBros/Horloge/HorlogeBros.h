@@ -26,6 +26,7 @@ public:
 	void setTemps(int temps);
 	void tempoGumba();
 	void setFin(bool);
+	void wait(int sec);
 
 
 };

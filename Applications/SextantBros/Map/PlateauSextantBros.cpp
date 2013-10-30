@@ -45,8 +45,6 @@ void PlateauSextantBros::bougerDroite(bool saut) {
 
 	if (etatHaut == DRAPEAU || etatHaut == CHATEAU || etatBas == DRAPEAU
 			|| etatBas == CHATEAU) {
-		int scoreDrapeau = (this->mario.getBas() - HAUTEUR)* -10;
-		this->score += scoreDrapeau;
 		niveauTermine = true;
 		return;
 	}
@@ -168,6 +166,10 @@ void PlateauSextantBros::casserBoite(Case *laCase) {
 	else if (laCase->getEtat() == BOITECHAMPI && !this->mario.getSuper()) {
 		this->mario.grandir();
 		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
+	}
+	else {
+		this->score+= 500;
+		this->initBandeau();
 	}
 
 	laCase->setCaseBord();
@@ -1017,7 +1019,7 @@ void PlateauSextantBros::perdu() {
 	this->marioAscii();
 }
 
-void PlateauSextantBros::victory() {
+void PlateauSextantBros::victory(int scoreDrapeau,int scoreVie,int scoreTemps, int scoreBonus) {
 	for (int x = 0; x < HAUTEUR; x++) {
 		for (int y = 0; y < LARGEUR; y++) {
 			tabIntro[x][y].init(x, y);
@@ -1119,9 +1121,24 @@ void PlateauSextantBros::victory() {
 	}
 
 
+
 	// score :
 	this->ecran->ecrireMot(16,47,"SCORE", GRIS_LEGER, NOIR);
 	this->ecran->afficherChiffre(16,53,this->score);
+
+	this->ecran->ecrireMot(18,47,"BONUS", GRIS_LEGER, NOIR);
+	this->ecran->afficherChiffre(18,53,scoreDrapeau);
+	this->ecran->ecrireMot(18,57,"+", GRIS_LEGER, NOIR);
+	this->ecran->afficherChiffre(18,59,scoreVie);
+	this->ecran->ecrireMot(18,64,"+", GRIS_LEGER, NOIR);
+	this->ecran->afficherChiffre(18,66,scoreTemps);
+	this->ecran->ecrireMot(18,71,"=", GRIS_LEGER, NOIR);
+	this->ecran->afficherChiffre(18,73,scoreBonus);
+
+	this->score += scoreBonus;
+	this->ecran->ecrireMot(20,47,"SCORE FINAL", GRIS_LEGER, NOIR);
+	this->ecran->afficherChiffre(20,60,this->score);
+
 	this->marioAscii();
 
 }
@@ -1157,7 +1174,7 @@ void PlateauSextantBros::marioAscii() {
 	this->ecran->afficherMot(13, 16, "$$$$$", MARRON);
 	this->ecran->afficherMot(13, 21, "11111111111111111111", BLANC);
 //10
-	this->ecran->afficherMot(14, 6, "$$$$", MARRON);
+	this->ecran->afficherMot(14, 6, "$$$$$", MARRON);
 	this->ecran->afficherMot(14, 11, "11111", BLANC);
 	this->ecran->afficherMot(14, 16, "$$$$$", MARRON);
 	this->ecran->afficherMot(14, 21, "11111111111111111111", BLANC);

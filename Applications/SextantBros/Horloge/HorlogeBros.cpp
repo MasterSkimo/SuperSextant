@@ -56,6 +56,14 @@ void HorlogeBros::tempoGumba() {
 	}
 }
 
+void HorlogeBros::wait(int sec) {
+	int t1 = this->timer->getSecondes();
+	int t2 = this->timer->getSecondes();
+	while (t2 < (t1 + sec)) {
+		t2 = this->timer->getSecondes();
+	}
+}
+
 void HorlogeBros::setFin(bool fin) {
 	this->fin = fin;
 }

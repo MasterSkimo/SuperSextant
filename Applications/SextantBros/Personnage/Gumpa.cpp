@@ -27,6 +27,7 @@ void Gumpa::bouger() {
 	else if (this->plateauBros->tabLevel[positionX-1][positionY].getEtat() == MARIO){
 		this->plateauBros->tabLevel[positionX][positionY].setCaseFond();
 		this->plateauBros->score+=500;
+		this->plateauBros->initBandeau();
 		this->isAlive = false;
 	}
 	// Sinon déplacement

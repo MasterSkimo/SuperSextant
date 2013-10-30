@@ -52,7 +52,7 @@ public :
 	void level();
 	void gameOver();
 	void marioAscii();
-	void victory();
+	void victory(int scoreDrapeau,int scoreVie,int scoreTemps, int scoreBonus);
 	void rafraichir(bool);
 	void incrementerPiece();
 	void incrementerPiece(int nbPieces);

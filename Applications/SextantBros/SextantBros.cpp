@@ -76,15 +76,21 @@ void SextantBros::run() {
 		}
 		this->horloge->setFin(true);
 		if (this->plateau->niveauTermine && this->plateau->vie > 0) {
-			this->plateau->score += this->horloge->getTemps() * 10;
-			this->plateau->victory();
-			this->horloge->~HorlogeBros();
-		} else {
-			this->plateau->perdu();
-			this->horloge->~HorlogeBros();
+			calculPoint();
+			this->plateau->victory(scoreDrapeau, scoreVie, scoreTemps, scoreBonus);
 		}
-		this->horloge->tempoGumba();
+		else {
+			this->plateau->perdu();
+		}
+		this->horloge->wait(5);
 		char c = clavier->getChar();
 	}
 }
 
+void SextantBros::calculPoint(){
+	scoreDrapeau = (this->plateau->mario.getBas() - HAUTEUR)* -50;
+	scoreVie =  (this->plateau->vie -1) * 1000;
+	scoreTemps = this->horloge->getTemps() * 10;
+
+	scoreBonus = scoreDrapeau + scoreVie + scoreTemps;
+}
