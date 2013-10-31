@@ -1,10 +1,3 @@
-/*
- * Gumpa.h
- *
- *  Created on: 24 oct. 2013
- *      Author: Gwenaël
- */
-
 #ifndef GUMPA_H_
 #define GUMPA_H_
 

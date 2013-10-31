@@ -30,7 +30,7 @@ void Gumpa::bouger() {
 		this->plateauBros->initBandeau();
 		this->isAlive = false;
 	}
-	// Sinon déplacement
+	// Sinon dÃ©placement
 	else {
 		this->plateauBros->tabLevel[positionX][positionY].setCaseFond();
 		positionY += direction;

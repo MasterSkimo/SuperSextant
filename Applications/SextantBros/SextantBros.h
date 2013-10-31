@@ -1,10 +1,3 @@
-/*
- * SextantBros.h
- *
- *  Created on: 25 oct. 2013
- *      Author: Matthieu Gutierrez
- */
-
 #ifndef SEXTANTBROS_H_
 #define SEXTANTBROS_H_
 

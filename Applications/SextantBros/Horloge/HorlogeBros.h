@@ -1,10 +1,3 @@
-/*
- * HorlogeBros.h
- *
- *  Created on: 28 oct. 2013
- *      Author: Matthieu Gutierrez
- */
-
 #ifndef HORLOGEBROS_H_
 #define HORLOGEBROS_H_
 

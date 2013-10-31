@@ -2,9 +2,12 @@
 
 /**
  * @file Case.cpp
- * Impl������mentation des m������thodes de la classes Case.
+ * Implémentation des méthodes de la classes Case.
  */
 
+/**
+ * Initialisation d'un bloc dans la map aux coordonnées xx et yy. Le bloc par défaut est un bloc de fond.
+ */
 void Case::init(int xx, int yy) {
 	x = xx;
 	y = yy;
@@ -27,7 +30,7 @@ EcranV* Case::getEcran() {
 
 
 /*
- * Changement d'��tat des blocs
+ * Changement d'état des blocs
  */
 void Case::setCaseFond() {
 	etat = FOND;
@@ -70,7 +73,7 @@ void Case::setCasePiece() {
 };
 
 void Case::setCaseChateau() {
-        etat = CHATEAU;
+    etat = CHATEAU;
 };
 
 void Case::setCaseDrapeau() {
@@ -78,11 +81,17 @@ void Case::setCaseDrapeau() {
 
 };
 
+/**
+ * Afficher le bloc
+ */
 void Case::paint(int posX, int posY) {
 	ecran->afficherCaractere(posX,posY, couleurPr(), couleurAr(), Caractere());
 }
 ;
 
+/**
+ * retourne la couleur de premier plan d'un bloc en fonction de son type
+ */
 Couleur Case::couleurPr() {
 	switch (etat) {
 		case FOND:
@@ -114,6 +123,9 @@ Couleur Case::couleurPr() {
 	}
 }
 
+/**
+ * retourne la couleur d'arrière plan d'un bloc en fonction de son type
+ */
 Couleur Case::couleurAr() {
 	switch (etat) {
 		case FOND:
@@ -145,6 +157,9 @@ Couleur Case::couleurAr() {
 	}
 }
 
+/**
+ * retourne le caractère à afficher dans un bloc selon son type
+ */
 char Case::Caractere() {
 	switch (etat) {
 	case FOND:
@@ -154,22 +169,12 @@ char Case::Caractere() {
 	case PIECE:
 		return '0';
 	default:
-		return 219;
+		return 219; //bloc vide
 	}
 }
 
-/* Ajout TP2
- */
-
-//void Case::occupe() {
-//	etatold = etat;
-//	etat = BALLE;
-//	paint();
-//}
-//;
 void Case::libere() {
 	etat = etatold;
-//	paint();
 }
 ;
 

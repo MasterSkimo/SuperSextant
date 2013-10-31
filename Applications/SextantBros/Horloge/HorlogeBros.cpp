@@ -1,10 +1,3 @@
-/*
- * HorlogeBros.cpp
- *
- *  Created on: 28 oct. 2013
- *      Author: Matthieu Gutierrez
- */
-
 #include "HorlogeBros.h"
 
 HorlogeBros::HorlogeBros() {

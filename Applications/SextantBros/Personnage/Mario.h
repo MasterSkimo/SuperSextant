@@ -1,10 +1,3 @@
-/*
- * Mario.h
- *
- *  Created on: 24 oct. 2013
- *      Author: Gwenaël
- */
-
 #ifndef MARIO_H_
 #define MARIO_H_
 

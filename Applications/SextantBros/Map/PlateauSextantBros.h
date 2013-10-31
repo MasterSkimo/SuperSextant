@@ -1,10 +1,3 @@
-/*
- * PlateauSextantBros.h
- *
- *  Created on: 24 oct. 2013
- *      Author: Matthieu Gutierrez
- */
-
 #ifndef PLATEAUSEXTANTBROS_H_
 #define PLATEAUSEXTANTBROS_H_
 

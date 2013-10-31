@@ -1,10 +1,3 @@
-/*
- * Mario.cpp
- *
- *  Created on: 24 oct. 2013
- *      Author: Gwenaël
- */
-
 #include <Applications/SextantBros/Personnage/Mario.h>
 
 Mario::Mario() {

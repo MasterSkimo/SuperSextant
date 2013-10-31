@@ -1,13 +1,8 @@
-/*
- * PlateauSextantBros.cpp
- *
- *  Created on: 24 oct. 2013
- *      Author: Matthieu Gutierrez
- */
-
 #include "PlateauSextantBros.h"
 
-// Constructeur du plateau
+/**
+ * Constructeur du plateau
+ */
 PlateauSextantBros::PlateauSextantBros(EcranV *e, ClavierV *c, HorlogeBros *h) {
 	this->ecran = e;
 	this->clavier = c;
@@ -22,6 +17,9 @@ PlateauSextantBros::PlateauSextantBros(EcranV *e, ClavierV *c, HorlogeBros *h) {
 	this->mario.setY(5);
 }
 
+/**
+ * appelle la bonne fonction de déplacement selon la touche pressée
+ */
 void PlateauSextantBros::bougerMario(char fleche) {
 
 	switch (fleche) {
@@ -37,7 +35,12 @@ void PlateauSextantBros::bougerMario(char fleche) {
 	}
 }
 
+/**
+ * Déplacement à droite de Mario
+ */
 void PlateauSextantBros::bougerDroite(bool saut) {
+
+	//Gestion de la fin du niveau (type de bloc CHATEAU ou DRAPEAU capté sur ou sous Mario)
 	int etatHaut =
 			this->tabLevel[this->mario.getHaut()][this->mario.getY() + 1].getEtat();
 	int etatBas =
@@ -49,24 +52,26 @@ void PlateauSextantBros::bougerDroite(bool saut) {
 		return;
 	}
 
+	//sinon, le déplacement est autorisé si on n'entre pas en collision avec le bloc de droite (ie. si le bloc en question est de type FOND ou PIECE)
 	if ((etatHaut == FOND || etatHaut == PIECE)
 			&& (etatBas == FOND || etatBas == PIECE)) {
 
-		// Incrémentation Piece
+		// Incrémentation nb pièces si ramassage d'une pièce
 		if (etatHaut == PIECE)
 			this->incrementerPiece();
 		if (etatBas == PIECE)
 			this->incrementerPiece();
 
-		// Effacer
+		// On réinitialise les blocs que Mario couvrait
 		this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseFond();
 		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseFond();
 
-		// Afficher
+		// On change les blocs ou Mario va avec le type Mario
 		this->mario.setY(this->mario.getY() + 1);
 		this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseMario();
 		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
 
+		//on rafraichit l'affichage
 		this->rafraichir(true);
 	}
 	if (!saut) {
@@ -74,7 +79,12 @@ void PlateauSextantBros::bougerDroite(bool saut) {
 	}
 }
 
+/**
+ * Déplacement à gauche de Mario
+ */
 void PlateauSextantBros::bougerGauche(bool saut) {
+
+	//Gestion de la fin du niveau (type de bloc CHATEAU ou DRAPEAU capté sur ou sous Mario)
 	int etatHaut =
 			this->tabLevel[this->mario.getHaut()][this->mario.getY() - 1].getEtat();
 	int etatBas =
@@ -86,18 +96,26 @@ void PlateauSextantBros::bougerGauche(bool saut) {
 		return;
 	}
 
+	//sinon, le déplacement est autorisé si on n'entre pas en collision avec le bloc de droite (ie. si le bloc en question est de type FOND ou PIECE)
 	if ((etatHaut == FOND || etatHaut == PIECE)
 			&& (etatBas == FOND || etatBas == PIECE)) {
 
-		// Effacer
+		// Incrémentation nb pièces si ramassage d'une pièce
+		if (etatHaut == PIECE)
+			this->incrementerPiece();
+		if (etatBas == PIECE)
+			this->incrementerPiece();
+
+		// On réinitialise les blocs que Mario couvrait
 		this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseFond();
 		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseFond();
 
-		// Afficher
+		// On change les blocs ou Mario va avec le type Mario
 		this->mario.setY(this->mario.getY() - 1);
 		this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseMario();
 		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
 
+		//on rafraichit l'affichage
 		this->rafraichir(true);
 	}
 	if (!saut) {
@@ -105,10 +123,15 @@ void PlateauSextantBros::bougerGauche(bool saut) {
 	}
 }
 
+/**
+ * Gestion du saut de Mario (4 cases)
+ */
 void PlateauSextantBros::sauter() {
+	//hauteur mario
 	int i = 0;
-	int etatCaseBas =
-			this->tabLevel[this->mario.getBas() + 1][this->mario.getY()].getEtat();
+
+	//Gestion fin de niveau
+	int etatCaseBas = this->tabLevel[this->mario.getBas() + 1][this->mario.getY()].getEtat();
 
 	if (etatCaseBas == DRAPEAU || etatCaseBas == CHATEAU) {
 		niveauTermine = true;
@@ -118,20 +141,24 @@ void PlateauSextantBros::sauter() {
 	//Monter
 	if (etatCaseBas != FOND && etatCaseBas != PIECE && etatCaseBas != TROU) {
 		while (i < 4) {
-			Case* CaseHaut =
-					&(this->tabLevel[this->mario.getHaut() - 1][this->mario.getY()]);
+			Case* CaseHaut = &(this->tabLevel[this->mario.getHaut() - 1][this->mario.getY()]);
 
 			if (CaseHaut->getEtat() == FOND || CaseHaut->getEtat() == PIECE) {
 				if (CaseHaut->getEtat() == PIECE)
 					this->incrementerPiece();
+				//Efface Mario de son ancienne position
 				this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseFond();
 				this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseFond();
+				//incrémente les positions de mario
 				this->mario.setHaut(this->mario.getHaut() - 1);
 				this->mario.setBas(this->mario.getBas() - 1);
+				//modifie les blocs a la nouvelle position du Mario avec le bon type
 				this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseMario();
 				this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
+				//rafraichissement de l'affichage
 				this->rafraichir(true);
 
+				//Gestion du déplacement G/D pendant le saut
 				char c = clavier->getChar();
 
 				switch (c) {
@@ -144,6 +171,7 @@ void PlateauSextantBros::sauter() {
 
 				}
 			} else {
+				//on entre en collision avec un bloc
 				i = 5;
 				if (CaseHaut->getEtat() == BOITEPIECE
 						|| CaseHaut->getEtat() == BOITECHAMPI)
@@ -158,11 +186,16 @@ void PlateauSextantBros::sauter() {
 
 }
 
+/**
+ * Modifie l'affichage des blocs cassables (blocs de type BOITEPIECE ou BOITECHAMPI)
+ */
 void PlateauSextantBros::casserBoite(Case *laCase) {
+	//BOITEPIECE -> incrémente le nb de pièces par 10
 	if (laCase->getEtat() == BOITEPIECE) {
 		this->incrementerPiece(10);
 	}
 
+	//BOITECHAMPI -> mario grandit
 	else if (laCase->getEtat() == BOITECHAMPI && !this->mario.getSuper()) {
 		this->mario.grandir();
 		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
@@ -172,6 +205,7 @@ void PlateauSextantBros::casserBoite(Case *laCase) {
 		this->initBandeau();
 	}
 
+	//Modification type de blocs
 	laCase->setCaseBord();
 	if (this->tabLevel[this->mario.getHaut() - 1][this->mario.getY() - 1].getEtat() == BOITEPIECE
 	|| this->tabLevel[this->mario.getHaut() - 1][this->mario.getY() - 1].getEtat() == BOITECHAMPI)
@@ -179,39 +213,51 @@ void PlateauSextantBros::casserBoite(Case *laCase) {
 	else
 		this->tabLevel[this->mario.getHaut() - 1][this->mario.getY() + 1].setCaseBord();
 
+	//rafraichissement de l'affichage
 	this->rafraichir(true);
 }
 
+/**
+ * Gestion de la chute de Mario (lors d'un saut ou absence de sol)
+ */
 void PlateauSextantBros::tomber() {
-	int etatCaseBas =
-			this->tabLevel[this->mario.getBas() + 1][this->mario.getY()].getEtat();
+	int etatCaseBas = this->tabLevel[this->mario.getBas() + 1][this->mario.getY()].getEtat();
+
+	//fin de niveau
 	if (etatCaseBas == DRAPEAU || etatCaseBas == CHATEAU) {
 		niveauTermine = true;
 		return;
 	}
+
 	switch (this->tabLevel[this->mario.getBas() + 1][this->mario.getY()].getEtat()) {
-	case PIECE:
-		this->incrementerPiece();
-	case FOND:
-		this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseFond();
-		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseFond();
-		this->mario.setHaut(this->mario.getHaut() + 1);
-		this->mario.setBas(this->mario.getBas() + 1);
-		this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseMario();
-		this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
-		this->rafraichir(true);
+		case PIECE:
+			//bloc PIECE -> incrémente le nb de pièces
+			this->incrementerPiece();
+		case FOND:
+			//bloc FOND -> Mario descend d'un bloc
+			this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseFond();
+			this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseFond();
+			this->mario.setHaut(this->mario.getHaut() + 1);
+			this->mario.setBas(this->mario.getBas() + 1);
+			this->tabLevel[this->mario.getHaut()][this->mario.getY()].setCaseMario();
+			this->tabLevel[this->mario.getBas()][this->mario.getY()].setCaseMario();
+			this->rafraichir(true);
 
-		break;
+			break;
 
-	case TROU:
-		this->perdreVie();
-		break;
-	default:
-		break;
+		case TROU:
+			//Bord de l'écran en bas == perte d'une vie de mario puis retour au début du niveau
+			this->perdreVie();
+			break;
+		default:
+			break;
 
 	}
 }
 
+/**
+ * Affichage de la page d'intro du jeu (nom + commandes sont affichés)
+ */
 void PlateauSextantBros::introduction() {
 	for (int x = 0; x < HAUTEUR; x++) {
 		for (int y = 0; y < LARGEUR; y++) {
@@ -528,6 +574,9 @@ void PlateauSextantBros::introduction() {
 	}
 }
 
+/**
+ * Initialisation du niveau = placement des différents blocs et Gumpa
+ */
 void PlateauSextantBros::level() {
 	for (int x = 0; x < HAUTEUR; x++) {
 		for (int y = 0; y < 300; y++) {
@@ -636,7 +685,7 @@ void PlateauSextantBros::level() {
 	this->genererLigne(24, 251, 2, TROU);
 	this->genererLigne(24, 256, 2, TROU);
 
-	// Pièces
+	// Pi��ces
 	this->tabLevel[22][14].setCasePiece();
 	this->tabLevel[22][16].setCasePiece();
 	this->tabLevel[22][18].setCasePiece();
@@ -791,6 +840,9 @@ void PlateauSextantBros::level() {
 	}
 }
 
+/**
+ * affichage de la map
+ */
 void PlateauSextantBros::rafraichir(bool tout) {
 	if (this->horloge->getTemps() <= 0)
 		this->perdreVie();
@@ -918,6 +970,9 @@ void PlateauSextantBros::perdreVie() {
 	}
 }
 
+/**
+ * initialise les blocs pour la page de partie perdue
+ */
 void PlateauSextantBros::perdu() {
 	for (int x = 0; x < HAUTEUR; x++) {
 		for (int y = 0; y < LARGEUR; y++) {
@@ -1019,6 +1074,9 @@ void PlateauSextantBros::perdu() {
 	this->marioAscii();
 }
 
+/**
+ * initialise les blocs pour la page de partie gagnée
+ */
 void PlateauSextantBros::victory(int scoreDrapeau,int scoreVie,int scoreTemps, int scoreBonus) {
 	for (int x = 0; x < HAUTEUR; x++) {
 		for (int y = 0; y < LARGEUR; y++) {
@@ -1143,6 +1201,9 @@ void PlateauSextantBros::victory(int scoreDrapeau,int scoreVie,int scoreTemps, i
 
 }
 
+/**
+ * mario affiché sur la page de fin de partie
+ */
 void PlateauSextantBros::marioAscii() {
 //1
 	this->ecran->afficherMot(5, 19, "/////////////", ROUGE);
@@ -1204,6 +1265,9 @@ void PlateauSextantBros::marioAscii() {
 
 }
 
+/**
+ * retrecit la taille de Mario
+ */
 void PlateauSextantBros::perdreRetrecir() {
 	if (this->mario.getSuper()) {
 		this->tabLevel[mario.getHaut()][mario.getY()].setCaseFond();

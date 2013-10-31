@@ -1,10 +1,3 @@
-/*
- * SextantBros.cpp
- *
- *  Created on: 25 oct. 2013
- *      Author: Matthieu Gutierrez
- */
-
 #include "SextantBros.h"
 
 SextantBros::SextantBros() {
@@ -22,6 +15,9 @@ SextantBros::~SextantBros() {
 	// TODO Auto-generated destructor stub
 }
 
+/**
+ * initialisation du jeu
+ */
 void SextantBros::launch() {
 	this->horloge = new HorlogeBros(this->ecran);
 	this->plateau = new PlateauSextantBros(this->ecran, this->clavier,
@@ -34,6 +30,9 @@ void SextantBros::launch() {
 	this->tabGumpa[5] = new Gumpa(229, 235, 23, plateau, horloge);
 }
 
+/**
+ * lancement du jeu
+ */
 void SextantBros::run() {
 	while (1) {
 		ecran->effacerEcranV(NOIR);
